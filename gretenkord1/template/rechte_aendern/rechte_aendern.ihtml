@@ -9,16 +9,16 @@
 <TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" BORDERCOLOR="#008000" ALIGN="center">
 <form ACTION="rechte_aendern.php" METHOD="post">
 <TR>
-    <TD>Rechte Art: </TD>
+    <TD>Leistenname: </TD>
     <TD><input TYPE="Text" NAME="rechte_art"></TD>
 </TR>
 <TR>
     <TD>Modul: </TD>
-    <TD><input TYPE="Text" NAME="modul"></TD>
+    <TD><input TYPE="Text" NAME="modul" VALUE="kein"></TD>
 </TR>
 <TR>
     <TD>Formularname: </TD>
-    <TD><input TYPE="Text" NAME="seite"></TD>
+    <TD><input TYPE="Text" NAME="seite" VALUE="kein"></TD>
 </TR>
 <TR>
     <TD>Beschreibung: </TD>
