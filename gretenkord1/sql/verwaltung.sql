@@ -4,7 +4,7 @@
 # http://www.phpmyadmin.net/ (download page)
 #
 # Host: localhost
-# Erstellungszeit: 11. Oktober 2002 um 12:59
+# Erstellungszeit: 15. Oktober 2002 um 13:15
 # Server Version: 3.23.51
 # PHP-Version: 4.2.2
 # Datenbank: `verwaltung`
@@ -38,7 +38,6 @@ INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, 
 INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (32, 36, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '03772', '44365', 'thomas@web.de', '0321332658963', 'nein');
 INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (31, 35, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '0377244365', '123123123', 'matthias@web.de', '321321321', 'nein');
 INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (33, 37, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '', '', '', '', 'nein');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (34, 38, NULL, '', '', '', NULL, NULL, NULL, NULL, 'nein');
 # --------------------------------------------------------
 
 #
@@ -217,6 +216,7 @@ CREATE TABLE rechte (
   id int(3) NOT NULL auto_increment,
   Rechte_Art varchar(40) NOT NULL default '',
   Modul varchar(40) NOT NULL default '',
+  Formular varchar(30) NOT NULL default 'kein',
   Beschreibung varchar(40) default NULL,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='Tabelle der Module';
@@ -225,12 +225,14 @@ CREATE TABLE rechte (
 # Daten für Tabelle `rechte`
 #
 
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (1, 'Benutzer anlegen', 'anlegen', 'anlegen eines neuen User');
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (2, 'Benutzer ändern', 'aendern', 'Userdaten und Rechte ändern');
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (4, 'Rechte anlegen / ändern', 'rechte_aendern', 'Rechte anlegen / ändern');
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (8, 'Information schreiben', 'info', 'schreiben einer Information');
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (9, 'Kommunikation', 'kommunikation', 'Kommunikationstabelle');
-INSERT INTO rechte (id, Rechte_Art, Modul, Beschreibung) VALUES (10, 'Verwaltung Knoten/Blatt', 'knoten_blatt', 'Verwaltung Knoten / Blatt');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (1, 'Benutzer anlegen', 'anlegen', 'kein', 'anlegen eines neuen User');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (2, 'Benutzer ändern', 'aendern', 'kein', 'Userdaten und Rechte ändern');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (4, 'Rechte anlegen / ändern', 'rechte_aendern', 'kein', 'Rechte anlegen / ändern');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (8, 'Information schreiben', 'info', 'kein', 'schreiben einer Information');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (9, 'Kommunikation', 'kommunikation', 'kein', 'Kommunikationstabelle');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (10, 'Verwaltung Knoten/Blatt', 'knoten_blatt', 'kein', 'Verwaltung Knoten / Blatt');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (13, 'Testformular A', '', 'testformular.ihtml', 'Testformular C');
+INSERT INTO rechte (id, Rechte_Art, Modul, Formular, Beschreibung) VALUES (14, 'Testformular 1', '', 'testformular.ihtml', 'Testformular 3');
 # --------------------------------------------------------
 
 #
@@ -248,19 +250,21 @@ CREATE TABLE rechte_user (
 # Daten für Tabelle `rechte_user`
 #
 
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (114, 1, 10);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (113, 1, 9);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (112, 1, 8);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (138, 1, 13);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (137, 1, 10);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (136, 1, 9);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (4, 2, 1);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (111, 1, 4);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (135, 1, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (51, 34, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (110, 1, 2);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (134, 1, 4);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (52, 36, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (50, 35, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (53, 37, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (109, 1, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (133, 1, 2);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (116, 22, 1);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (117, 22, 8);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (132, 1, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (139, 1, 14);
 # --------------------------------------------------------
 
 #
@@ -320,7 +324,7 @@ CREATE TABLE rezepte_info (
 #
 
 CREATE TABLE user (
-  id int(3) NOT NULL auto_increment,
+  id int(5) NOT NULL auto_increment,
   Anrede varchar(10) default NULL,
   Name varchar(40) NOT NULL default '',
   Vorname varchar(40) NOT NULL default '',
@@ -341,7 +345,6 @@ INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Beme
 INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (35, NULL, 'Krauss', 'Matthias', 'matthias', 'matthias', 'passiv', '  Redaktion', 20021011102017);
 INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (36, NULL, 'Krauss', 'Thomas', 'thomas', 'thomas', 'passiv', '  Redaktion', 20021011102017);
 INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (37, NULL, 'Max', 'Mustermann', 'max', 'max', 'passiv', '  ', 20021011102017);
-INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (38, NULL, 'Mies', 'Mies', 'mies', 'mies', 'passiv', ' &nbsp;', 20021011102017);
 # --------------------------------------------------------
 
 #

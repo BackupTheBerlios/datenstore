@@ -1,14 +1,21 @@
 <?
 /******** 'key.inc' fuer Datenbank  *****************/
-$db_host = "localhost";
-$db_name = "verwaltung";
-$db_user = "walter";
-$db_pass = "walter";
+$db_host = "mysql1.webpack.hosteurope.de";
+$db_name = "datenstore_de";
+$db_user = "ftp12468";
+$db_pass = "Stadtplan";
 
 /********* allgemeine Pfade ************/
 define('PFAD','../../');
 define('PHP_PFAD',PFAD.'php/');  // PHP - Pfad
 define('TEMPLAT_PFAD',PFAD.'template/');  // Template - Pfad
+
+
+/************ Html - Komprimierung ***************/
+include_once(PHP_PFAD."gzencode.php");  // Datei fuer Html - Komprimierung
+
+
+
 
 /********* Templatpfade *******************/
 define('T_START',TEMPLAT_PFAD.'start/'); // Templat - Pfad, Modul Benutzer 'start'
@@ -19,7 +26,7 @@ define('T_RECHTE_AENDERN',TEMPLAT_PFAD.'rechte_aendern');  // Templat - Pfad, Mo
 define('T_INFO',TEMPLAT_PFAD.'info');  // Templat - Pfad, Modul 'information schreiben'
 define('T_KOMMUNIKATION',TEMPLAT_PFAD.'kommunikation'); // Templat - Pfad, Modul 'kommunikation'
 define('T_KNOTEN_BLATT',TEMPLAT_PFAD.'knoten_blatt'); // Templat - Pfad , Modul Knoten/Blatt anlegen/aendern
-define('T_FORMULAR_EINGEBEN',TEMPLAT_PFAD.'formular_eingeben'); // Templat - Pfad , Modul Formulare zur Eingabe
+define('T_EINGABE_FORMULAR',TEMPLAT_PFAD.'eingabe_formular'); // Templat - Pfad , Modul Formulare zur Eingabe
 
 /************* PHP - Pfade *****************/
 define('PHP_START',PHP_PFAD.'start/');  // PHP - Pfad, Modul Benutzer 'start'
@@ -30,13 +37,8 @@ define('PHP_RECHTE_AENDERN',PHP_PFAD.'rechte_aendern');  // PHP - Pfad, Modul Re
 define('PHP_INFO',PHP_PFAD.'info');  // PHP - Pfad, Modul 'information schreiben'
 define('PHP_KOMMUNIKATION',PHP_PFAD.'kommunikation');  // PHP - Pfad, Modul 'kommunikation'
 define('PHP_KNOTEN_BLATT',PHP_PFAD.'knoten_blatt');  // PHP - Pfad, Modul 'knoten_blatt'
-define('PHP_FORMULAR_EINGEBEN',PHP_PFAD.'formular_eingeben'); // Templat - Pfad , Modul Formulare zur Eingabe
+define('PHP_EINGABE_FORMULAR',PHP_PFAD.'eingabe_formular'); // Templat - Pfad , Modul Formulare zur Eingabe
 
 /************** Ablage der Seiten und Module der Kunden - Webpage ******************/
 define(KUNDE,PFAD.'kunde');
-
-/************** Dummyfunktion fuer Komprimierung *************************/
-function gz_output(){
-	echo "<br> keine Komprimierung !";
-}
 ?>

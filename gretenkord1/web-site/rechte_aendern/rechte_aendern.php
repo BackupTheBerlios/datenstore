@@ -18,9 +18,9 @@ $db->connect();
 
 /********* neues Recht eintragen ****************/
 if($HTTP_POST_VARS[anlegen]){
-	$query1 = "insert into rechte (Rechte_Art, Modul, Beschreibung) values ";
+	$query1 = "insert into rechte (Rechte_Art, Modul, Beschreibung, Formular) values ";
 	$query1 .= "('$HTTP_POST_VARS[rechte_art]', '$HTTP_POST_VARS[modul]', ";
-	$query1 .= "'$HTTP_POST_VARS[beschreibung]')";
+	$query1 .= "'$HTTP_POST_VARS[beschreibung]', '$HTTP_POST_VARS[seite]')";
 	$db->query($query1);
 }
 
@@ -41,4 +41,5 @@ $tmpl->addVars('liste',$antwort1);
 
 $tmpl->displayParsedTemplate();
 $db->close();
+gz_output();
 ?>

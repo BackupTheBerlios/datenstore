@@ -32,4 +32,5 @@ $tmpl->addVar('gesamt','USER',1);
 
 $tmpl->displayParsedTemplate();
 $db->close();
+gz_output();
 ?>

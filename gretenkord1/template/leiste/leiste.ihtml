@@ -20,6 +20,13 @@
 		    <td bgcolor="#FCE79E"><a href="../{MODUL}/{MODUL}.php?" target="haupt">{RECHTE_ART}</a></td>
 		</tr>
 	</pattemplate:tmpl>
+	
+	<PATTEMPLATE:TMPL NAME="formulare" VISIBILITY="hidden">
+		<tr>
+			<td BGCOLOR="#FCE79E"><A HREF="../formular_eingeben/formular_eingeben.php?user_id={USER_ID}&formular={FORMULAR}&name_formular={NAME_FORMULAR}" TARGET="haupt">{NAME_FORMULAR}</A></TD>
+		</TR>
+	</PATTEMPLATE:TMPL>
+	
 	<!-- Ende Block 'navi' -->
 	
 	<!-- Beginn Block 'logout' -->

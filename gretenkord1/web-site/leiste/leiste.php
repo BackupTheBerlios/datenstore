@@ -24,27 +24,38 @@ if($absenden){  // Eroeffnungsmenue des CMS
 if($zugang){
 	$query1="select rechte_id from rechte_user where user_id='$zugang[id]'";
 	$abfrage1=$db->query($query1);
-	$i=0;
-	while($wert=$abfrage1->fetch_array(patDBC_TYPEASSOC)){
+	$i=0; // Zaehler fuer 
+	$j=0;
+	while($wert=$abfrage1->fetch_array(patDBC_TYPEASSOC)){  // Datensaetze aus Tabelle 'rechte_user'
 		foreach($wert as $inhalt){
 			$ausgabe[$i]=$inhalt;
-			$query3="select Rechte_Art,Modul from rechte where id='$ausgabe[$i]'";
+			$query3="select Rechte_Art,Modul,Formular from rechte where id='$ausgabe[$i]'";  // Zuordnung 'Rechte-Name' zu 'rechte-id'
 			$abfrage3=$db->query($query3);
 			while($wert=$abfrage3->fetch_array(patDBC_TYPEASSOC)){ // Abrufen eines Datensatzes
-				foreach($wert as $name => $inhalt){ // Zerlegung Datensatz in Array
-					$ausgabe[$name][$i]=$inhalt;
+				if($wert[Formular]=='kein'){
+					$ausgabe1[Modul][$i]=$wert[Modul];
+					$ausgabe1[Rechte_Art][$i]=$wert[Rechte_Art];
+					$i++;
+				}
+				else{
+					$ausgabe2[USER_ID][$j]=$zugang[id];
+					$ausgabe2[Formular][$j]=$wert[Formular];
+					$ausgabe2[Name_Formular][$j]=$wert[Rechte_Art];
+					$j++;
 				}
 			}
 		}
-	$i++;
 	}
 	$tmpl->setAttribute('person','visibility','visibility');
 	$tmpl->setAttribute('navi','visibility','visibility');
-	$tmpl->addVars('navi',$ausgabe);
+	$tmpl->addVars('navi',$ausgabe1);
+	$tmpl->setAttribute('formulare','visibility','visibility');
+	$tmpl->addVars('formulare',$ausgabe2);
 	$tmpl->addVar('person','PERSON_ID',$zugang[id]);
 	$tmpl->setAttribute('logout','visibility','visibility');
 }
 	
 $db->close();
 $tmpl->displayParsedTemplate();
+gz_output();
 ?>

@@ -55,6 +55,7 @@ if(!$anlegen){
 	$tmpl->readTemplatesFromFile('anlegen.ihtml');
 	$tmpl->addVar('haupt','ANZEIGE','test');
 	$tmpl->displayParsedTemplate();
+	gz_output();
 }
 
 ?>

@@ -18,4 +18,5 @@ $tmpl->addVars('liste',$antwort1);
 
 $db->close();
 $tmpl->displayParsedTemplate();
+gz_output();
 ?>

@@ -97,4 +97,5 @@ else{
 
 $db->close();
 $tmpl->displayParsedTemplate();
+gz_output();
 ?>

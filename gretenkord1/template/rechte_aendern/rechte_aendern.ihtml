@@ -17,6 +17,10 @@
     <TD><input TYPE="Text" NAME="modul"></TD>
 </TR>
 <TR>
+    <TD>Formularname: </TD>
+    <TD><input TYPE="Text" NAME="seite"></TD>
+</TR>
+<TR>
     <TD>Beschreibung: </TD>
     <TD><input TYPE="Text" NAME="beschreibung"></TD>
 </TR>
@@ -29,15 +33,17 @@
 
 <TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" ALIGN="center" BORDERCOLOR="#0000FF" WIDTH="400">
 	<TR>
-	    <TD ALIGN="center" BGCOLOR="#FFB35E">Recht: </TD>
-	    <TD ALIGN="center" BGCOLOR="#FFB35E">Beschreibung: </TD>
-	    <TD ALIGN="center" BGCOLOR="#FFB35E">&nbsp;</TD>
+		<TD ALIGN="center" BGCOLOR="#FFB35E">Bezeichnung: </TD>
+		<td ALIGN="center" BGCOLOR="#ffb35e">Formular: </TD>
+		<td ALIGN="center" BGCOLOR="#ffb35e">Beschreibung: </TD>
+		<td ALIGN="center" BGCOLOR="#ffb35e">&nbsp;</TD>
 	</TR>
 <PATTEMPLATE:TMPL NAME="liste" TYPE="oddeven">	
 	<PATTEMPLATE:SUB CONDITION="odd">
 	<TR>
 	<form ACTION="rechte_aendern.php" METHOD="post">
 	    <TD>&nbsp;{RECHTE_ART}&nbsp;</TD>
+			<TD>&nbsp;{FORMULAR}&nbsp;</TD>
 	    <TD>&nbsp;{BESCHREIBUNG}&nbsp;</TD>
 	    <TD><input TYPE="Hidden" NAME="rechte_id" VALUE="{ID}"><input TYPE="Submit" NAME=" loeschen " VALUE=" l&ouml;schen "></TD>
 	</FORM>
@@ -47,6 +53,7 @@
 	<TR>
 	<form ACTION="rechte_aendern.php" METHOD="post">
 	    <TD BGCOLOR="#FFB35E">&nbsp;{RECHTE_ART}&nbsp;</TD>
+			<TD BGCOLOR="#FFB35E">&nbsp;{FORMULAR}&nbsp;</TD>
 	    <TD BGCOLOR="#FFB35E">&nbsp;{BESCHREIBUNG}&nbsp;</TD>
 	    <TD BGCOLOR="#FFB35E"><input TYPE="Hidden" NAME="rechte_id" VALUE="{ID}"><input TYPE="Submit" NAME=" loeschen " VALUE=" l&ouml;schen "></TD>
 	</FORM>

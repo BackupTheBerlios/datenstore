@@ -132,4 +132,5 @@ if($HTTP_POST_VARS[blatt]){
 $tmpl->displayParsedTemplate();
 //$tmpl->dump();
 $db->close();  // Verbindung zur Datenbank aufheben
+gz_output();
 ?>

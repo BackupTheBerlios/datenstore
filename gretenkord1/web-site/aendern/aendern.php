@@ -112,4 +112,5 @@ if(!$aendern and !$loeschen){
 
 $tmpl->displayParsedTemplate();
 $db->close();  // Verbindung zur Datenbank aufheben
+gz_output();
 ?>

@@ -1,0 +1,42 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body BGCOLOR="#FCD685">
+<h2 ALIGN="center" STYLE="color:blue">{INFO}</H2>
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="0">
+<form METHOD="get" ACTION="formular_eingeben.php" ENCTYPE="multipart/form-data">
+<input TYPE="Hidden" NAME="user_id" VALUE="{USER_ID}">
+<input TYPE="Hidden" NAME="formular" VALUE="{FORMULAR}">
+<input TYPE="Hidden" NAME="name_formular" VALUE="{NAME_FORMULAR}">
+<TR>
+    <TD>&Uuml;berschrift: </TD>
+    <TD><input TYPE="Text" NAME="ueberschrift" size="40"></TD>
+</TR>
+<TR>
+    <TD VALIGN="top">Kurztext: </TD>
+    <TD><textarea TYPE="Text" NAME="kurztext1" ROWS="2" COLS="40"></textarea></TD>
+</TR>
+<TR>
+    <TD VALIGN="top">Langtext: </TD>
+    <TD><textarea TYPE="Text" NAME="langtext1" ROWS="20" COLS="40"></textarea></TD>
+</TR>
+<TR>
+    <TD>Bild1: </TD>
+    <TD><input TYPE="File" NAME="minibild1"></TD>
+</TR>
+<TR>
+    <TD>Bild2: </TD>
+    <TD><input TYPE="File" NAME="minibild2"></TD>
+</TR>
+<TR>
+    <TD COLSPAN="2" ALIGN="center"><input TYPE="Submit" NAME="speichern" VALUE=" speichern "></TD>    
+</TR>
+</FORM>
+</TABLE>
+
+</body>
+</html>
+</PATTEMPLATE:TMPL>
