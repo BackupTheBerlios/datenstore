@@ -17,6 +17,7 @@ define('T_ANLEGEN',TEMPLAT_PFAD.'anlegen/');  // Templat - Pfad, Modul Benutzer 
 define('T_AENDERN',TEMPLAT_PFAD.'aendern');  // Templat - Pfad, Modul Benutzer 'aendern'
 define('T_RECHTE_AENDERN',TEMPLAT_PFAD.'rechte_aendern');  // Templat - Pfad, Modul Rechte 'aendern'
 define('T_INFO',TEMPLAT_PFAD.'info');  // Templat - Pfad, Modul 'information schreiben'
+define('T_KOMMUNIKATION',TEMPLAT_PFAD.'kommunikation'); // Templat - Pfad, Modul 'kommunikation'
 
 /************* PHP - Pfade *****************/
 define('PHP_START',PHP_PFAD.'start/');  // PHP - Pfad, Modul Benutzer 'start'
@@ -25,6 +26,7 @@ define('PHP_ANLEGEN',PHP_PFAD.'anlegen/');  // PHP - Pfad, Modul Benutzer 'anleg
 define('PHP_AENDERN',PHP_PFAD.'aendern');  // PHP - Pfad, Modul Benutzer 'aendern'
 define('PHP_RECHTE_AENDERN',PHP_PFAD.'rechte_aendern');  // PHP - Pfad, Modul Rechte 'aendern'
 define('PHP_INFO',PHP_PFAD.'info');  // PHP - Pfad, Modul 'information schreiben'
+define('PHP_KOMMUNIKATION',PHP_PFAD.'kommunikation');  // PHP - Pfad, Modul 'kommunikation'
 
 
 /************* Pfade fuer Seitengenerator ********************/
