@@ -30,4 +30,6 @@ define('PHP_INFO',PHP_PFAD.'info');  // PHP - Pfad, Modul 'information schreiben
 define('PHP_KOMMUNIKATION',PHP_PFAD.'kommunikation');  // PHP - Pfad, Modul 'kommunikation'
 define('PHP_KNOTEN_BLATT',PHP_PFAD.'knoten_blatt');  // PHP - Pfad, Modul 'knoten_blatt'
 
+/************** Ablage der Seiten und Module der Kunden - Webpage ******************/
+define(KUNDE,'c:/php/gretenkord/kunde');
 ?>

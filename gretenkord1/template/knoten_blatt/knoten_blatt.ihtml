@@ -12,8 +12,10 @@
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenname: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenverzeichnis: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Seite / Anwendung: </TD>
-    <TD ALIGN="center" BGCOLOR="#FDBF4D">&nbsp;</TD>
-    <TD ALIGN="center" BGCOLOR="#FDBF4D">&nbsp;</TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten &auml;ndern: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten l&ouml;schen: </TD>
+		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten-<br>information: </TD>
+		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt-<br>zuordnung &auml;ndern: </TD>
 </TR>
 <PATTEMPLATE:TMPL NAME="knoten_liste" TYPE="oddeven" VISIBILITY="hidden">
 <PATTEMPLATE:SUB CONDITION="odd">
@@ -21,10 +23,20 @@
 <form ACTION="knoten_blatt.php" METHOD="post">
 <input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
     <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
-    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_verzeichnis" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
-    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#FDE4B3">
+			<select NAME="knoten_verzeichnis">
+				{KNOTEN_VERZEICHNIS}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDE4B3">
+			<select NAME="knoten_pfad">				
+				{KNOTEN_PFAD}
+			</SELECT>
+		</TD>
     <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
     <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
+		<TD BGCOLOR="#FDE4B3"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{KNOTEN_INFO}" BORDER="0"></TD>
+		<TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="blatt" VALUE=" Bl&auml;tter "></TD>
 </FORM>
 </TR>
 </PATTEMPLATE:SUB>
@@ -33,10 +45,20 @@
 <form ACTION="knoten_blatt.php" METHOD="post">
 <input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
     <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
-    <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_verzeichnis" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
-    <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#F8D789">
+			<select NAME="knoten_verzeichnis">
+				{KNOTEN_VERZEICHNIS}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#F8D789">
+			<select NAME="knoten_pfad">				
+				{KNOTEN_PFAD}
+			</SELECT>
+		</TD>
     <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
     <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
+		<TD BGCOLOR="#F8D789"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{KNOTEN_INFO}" BORDER="0"></TD>
+		<TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="blatt" VALUE=" Bl&auml;tter "></TD>
 </FORM>
 </TR>
 </PATTEMPLATE:SUB>
@@ -44,10 +66,23 @@
 <TR>
 <form ACTION="knoten_blatt.php" METHOD="post">
     <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
-    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_id" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
-    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="knoten_verzeichnis">
+				{KNOTEN_VERZEICHNIS1}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="knoten_pfad">
+				<option VALUE="index.html">index.html</option>
+				<option VALUE="index.php">index.php</option>
+			</SELECT>
+		</TD>
+		<TD BGCOLOR="#FDBF4D" COLSPAN="3">
+			<textarea NAME="knoten_info" COLS="25" ROWS="5">
+			</TEXTAREA>
+		</TD>
     <TD BGCOLOR="#FDBF4D"><input TYPE="Submit" NAME="hinzufuegen_knoten" VALUE=" hinzuf&uuml;gen "></TD>
-    <TD BGCOLOR="#FDBF4D">&nbsp;</TD>
+    
 </FORM>
 </TR>
 </TABLE>

@@ -4,7 +4,7 @@
 # http://www.phpmyadmin.net/ (download page)
 #
 # Host: localhost
-# Erstellungszeit: 02. Oktober 2002 um 15:04
+# Erstellungszeit: 07. Oktober 2002 um 14:49
 # Server Version: 3.23.51
 # PHP-Version: 4.2.2
 # Datenbank: `verwaltung`
@@ -165,6 +165,7 @@ CREATE TABLE knoten1 (
   knoten_name varchar(75) NOT NULL default '',
   knoten_pfad varchar(75) NOT NULL default '',
   knoten_verzeichnis varchar(50) default NULL,
+  knoten_info varchar(100) default NULL,
   PRIMARY KEY  (knoten_id)
 ) TYPE=MyISAM COMMENT='beinhaltet die einzelnen Gruppen';
 
@@ -172,11 +173,10 @@ CREATE TABLE knoten1 (
 # Daten für Tabelle `knoten1`
 #
 
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis) VALUES (1, 'Knoten1', 'blatt10.html', 'aaa');
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis) VALUES (2, 'Knoten2', 'blatt20.html', 'bbb');
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis) VALUES (3, 'Knoten3', 'blatt30.html', 'ccc');
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis) VALUES (4, 'Knoten4', 'blatt40.html', NULL);
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis) VALUES (5, 'Knoten5', 'blatt50.html', NULL);
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (12, 'Testknoten', 'index.php', 'newsletter', 'aaaaaaaa aaaaaa aaaaaaaa aaaaaaaa aaaaa\r\nbbbbbbbbbb bbbbbbb bbbbbbbbb bbbbbbb\r\nccccccc cccccc		');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (3, 'Knoten3', 'index.html', 'ccc', NULL);
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (4, 'Knoten4', 'index.php', NULL, NULL);
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (5, 'Knoten5', 'index.php', 'rezepte', NULL);
 # --------------------------------------------------------
 
 #
@@ -306,6 +306,9 @@ CREATE TABLE rezepte (
   abschnitt5 text,
   datum timestamp(14) NOT NULL,
   bild varchar(75) default NULL,
+  empfehlung enum('Nein','Ja') NOT NULL default 'Nein',
+  rezept_ueberprueft enum('Nein','Ja') NOT NULL default 'Nein',
+  rezept_note tinyint(1) default NULL,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='Rezepttabelle';
 

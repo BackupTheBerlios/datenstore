@@ -2,6 +2,18 @@
 /*********** zentrale Funktionsdatei **************/
 
 /**
+* Ueberpruefung eines gebildeten nummerischen Array's auf Inhalt 1 - dimensional
+*
+*/
+function kontrolle_array_numm($array){  // allgemeine Kontrolle eines Array
+echo "Arraykontrolle 1 - dimensional - nummerisch !<hr>";
+echo "Anzahl der Datens&auml;tze: ".count($array)."<hr>";
+	foreach($array as $inhalt){
+		echo "Inhalt: &nbsp;&nbsp; $inhalt <br>";
+	}
+}
+
+/**
 * Ueberpruefung eines gebildeten Array's auf Inhalt 1 - dimensional
 *
 */
