@@ -1,0 +1,153 @@
+<pattemplate:tmpl type="standard" name="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Modul Benutzer aendern</title>
+</head>
+<body bgcolor="fdd786">
+<pattemplate:tmpl VISIBILITY="visibility" name="liste_sichtbar">
+<table cellspacing="2" cellpadding="0" border="1" bordercolor="#ff0000" width="500">
+<!-- Beginn Design 'liste kopf' -->
+<tr>
+    <td>Name: </td>
+    <td>Vorname: </td>
+    <td>Funktion: </td>
+    <td>&auml;ndern: </td>
+    <td>l&ouml;schen: </td>
+</tr>
+<!-- Ende Design 'liste kopf' -->
+<pattemplate:tmpl type="oddeven" name="liste" LOOP="5" UNUSEDVARS="strip">
+<pattemplate:sub condition="odd">
+<!-- Beginn Design 'liste ungerade' -->
+<tr>
+    <td bgcolor="#FCAA30">{NAME}</td>
+    <td bgcolor="#FCAA30">{VORNAME}</td>
+    <td bgcolor="#FCAA30">{BEMERKUNG}</td>
+    <td bgcolor="#FCAA30">
+			<form action="aendern.php" target="haupt">				
+				<input type="Hidden" name="aendern_hidden" value="{ID}">
+				<input type="Submit" name="aendern" value=" &auml;ndern ">
+			</form>
+		</td>
+    <td bgcolor="#FCAA30">
+		<form>
+			<input type="Hidden" name="loeschen_hidden" value="{ID}">
+			<input type="Submit" name="loeschen" value=" l&ouml;schen ">
+		</form>
+		</td>
+</tr>
+<!-- Ende Design 'liste ungerade' -->
+</pattemplate:sub>
+<pattemplate:sub condition="even">
+<!-- Beginn Design 'liste gerade' -->
+<tr>
+    <td bgcolor="#FDB757">{NAME}</td>
+    <td bgcolor="#FDB757">{VORNAME}</td>
+    <td bgcolor="#FDB757">{BEMERKUNG}</td>
+    <td bgcolor="#fdb757">
+			<form action="aendern.php" target="haupt">				
+				<input type="Hidden" name="aendern_hidden" value="{ID}">
+				<input type="Submit" name="aendern" value=" &auml;ndern ">
+			</form>
+		</td>
+    <td bgcolor="#fdb757">
+		<form>
+			<input type="Hidden" name="loeschen_hidden" value="{ID}">
+			<input type="Submit" name="loeschen" value=" l&ouml;schen ">
+		</form>
+		</td>
+	</tr>
+	<!-- Ende Design 'liste ungerade' -->
+</pattemplate:sub>
+</pattemplate:tmpl>
+</table>
+</pattemplate:tmpl>
+
+
+<pattemplate:tmpl name="person" VISIBILITY="visibility">
+<!-- Beginn Design 'person' -->
+	<table cellspacing="2" cellpadding="2" border="1" bordercolor="blue">
+		<form action="aendern.php" target="haupt" method="post">
+			<tr>
+				 <td>Anrede: </td>
+			   <td><input type="Text" name="anrede" value="{ANREDE}"></td>
+			   <td>Anlagedatum: </td>
+			   <td><input type="Text" name="datum" value="{DATUM}" DISABLED></td>
+			</TR>
+			<tr>
+			    <td>Name: </td>
+			    <td><input type="Text" name="name" value="{NAME}"></td>
+			    <td>Vorname: </td>
+			    <td><input type="Text" name="vorname" value="{VORNAME}"></td>
+			</tr>
+			<tr>
+			    <td>Passwort: </td>
+			    <td><input type="Text" name="passwort" value="{PASSWORT}"></td>
+			    <td>Benutzername: </td>
+			    <td><input type="Text" name="benutzer" value="{BENUTZERNAME}"></td>
+			</tr>
+			<tr>
+				<td>Adresse best&auml;tigt: </td>
+			  <td> best&auml;tigt: <input TYPE="Radio" NAME="adresse_bestaetigt" VALUE="ja" {ADRESSE_AKTIV}>
+						 unbest&auml;tigt: <input TYPE="Radio" NAME="adresse_bestaetigt" VALUE="nein" {ADRESSE_INAKTIV}>
+				</td>
+			  <td>weitere Adressen: </td>
+			  <td>{WEITERE_ADRESSEN} Adresse/n vorhanden !</td>
+			</TR>
+			<tr>
+			    <td>PLZ: </td>
+			    <td><input type="Text" name="plz" value="{PLZ}"></td>
+					<td>Ort: </td>
+					<td><input type="Text" name="ort" value="{ORT}"></td>
+	
+			</tr>
+			<tr>
+					<td>Strasse: </td>
+			    <td><input type="Text" name="strasse" value="{STRASSE}"></td>
+					<td>Haus - Nr.: </td>
+			    <td><input type="Text" name="nr" value="{NR}"></td>
+			</tr>
+			<tr>
+					<td>Telefon: </td>
+			    <td><input type="Text" name="telefon" value="{TELEFON}"></td>
+			    <td>Handy: </td>
+			    <td><input type="Text" name="handy" value="{HANDY}"></td>
+
+			</tr>
+			<tr>
+			    <td>E-Mail: </td>
+			    <td><input type="Text" name="email" value="{EMAIL}"></td>				
+			    <td>Fax: </td>
+			    <td><input type="Text" name="fax" value="{FAX}"></td>
+			</tr>
+			<tr>
+				<td>Funktion: </td>
+				<td><input type="Text" name="bemerkung" value="{BEMERKUNG}"></td>
+				<td>Aktiv / Passiv: </td>
+		    <td> passiv: <input TYPE="Radio" NAME="aktiv" VALUE="passiv" {ZUSTAND_PASSIV}> aktiv: <input TYPE="Radio" NAME="aktiv" VALUE="aktiv" {ZUSTAND_AKTIV}></td>
+						<input type="Hidden" name="aendern_erfolgt" value="1">
+						<input type="Hidden" name="aendern_hidden" value="{USER_ID}">
+			</tr>
+			<!-- Ende Design 'person' -->
+</PATTEMPLATE:TMPL>
+
+<PATTEMPLATE:TMPL NAME="rechte" VISIBILITY="visibility">
+			<tr>
+				<td>{RECHTE_ART}: </TD>
+				<td> <input TYPE="Checkbox" NAME="rechte_check[{ID}]" {CHECKED}></TD>
+				<td COLSPAN="2">{BESCHREIBUNG}</TD>
+			</TR>
+</PATTEMPLATE:TMPL>
+
+
+		
+<PATTEMPLATE:TMPL NAME="fuss" VISIBILITY="visibility">
+			<tr>
+			    <td colspan="4" align="center"><input type="Submit" value=" &auml;ndern " name="aendern"></td>
+			</tr>
+		</form>
+	</table>
+</PATTEMPLATE:TMPL>			
+</body>
+</html>
+</pattemplate:tmpl>

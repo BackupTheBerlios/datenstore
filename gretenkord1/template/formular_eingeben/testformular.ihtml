@@ -3,6 +3,13 @@
 <html>
 <head>
 	<title>Unbenannt</title>
+	<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+	function anzeigen(element){
+		window.open(document.forms[0].elements[element].value,"Test","width=150,height=150,left=0,top=0");
+	}
+// -->
+</SCRIPT>
 </head>
 <body BGCOLOR="#FCD685">
 <h2 ALIGN="center" STYLE="color:blue">{INFO}</H2>
@@ -25,11 +32,11 @@
 </TR>
 <TR>
     <TD>Bild1: </TD>
-    <TD><input TYPE="File" NAME="minibild1"></TD>
+    <TD><input TYPE="File" NAME="minibild1" ONCHANGE="anzeigen('minibild1')"></TD>
 </TR>
 <TR>
     <TD>Bild2: </TD>
-    <TD><input TYPE="File" NAME="minibild2"></TD>
+    <TD><input TYPE="File" NAME="minibild2" ONCHANGE="anzeigen('minibild2')"></TD>
 </TR>
 <TR>
     <TD COLSPAN="2" ALIGN="center"><input TYPE="Submit" NAME="speichern" VALUE=" speichern "></TD>    
