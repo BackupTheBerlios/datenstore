@@ -57,14 +57,18 @@ class tree{
 	*/
 	function alle_knoten(){
 		$result=mysql_db_query($this->db_database,"select * from knoten1 order by knoten_id");
+		$i=0;
 		while($arr1=mysql_fetch_array($result,MYSQL_ASSOC)){
-			$this->knoten_array[knoten_id][$arr1[knoten_id]]=$arr1[knoten_id];  // knoten_id
-			$this->knoten_array[knoten_name][$arr1[knoten_id]]=$arr1[knoten_name];  // knoten_name
-			$this->knoten_array[knoten_pfad][$arr1[knoten_id]]=$this->pfad.$arr1[knoten_id]."/".$arr1[knoten_pfad]; // knoten_pfad
+			$this->knoten_array[knoten_id][$i]=$arr1[knoten_id];  // knoten_id
+			$this->knoten_array[knoten_name][$i]=$arr1[knoten_name];  // knoten_name
+			$this->knoten_array[knoten_pfad][$i]=$this->pfad.$arr1[knoten_id]."/".$arr1[knoten_pfad]; // knoten_pfad
 			// $this->kontrolle($arr1);
+			if($this->knoten==$arr1[knoten_id]){
+				$this->knoten_schnitt=$i;
+			}
+			$i++;
 		}
 		mysql_free_result($result);
-		$this->schnittstelle_knoten();
 		$this->knoten_zerlegung();
 	}
 	
@@ -87,7 +91,7 @@ class tree{
 		}
 	//$this->kontrolle($arr);
 	mysql_free_result($abfrage1);
-	$this->blatt_zerlegung();
+	if($i>0) $this->blatt_zerlegung();
 	}
 	
 	/**
@@ -135,49 +139,58 @@ class tree{
 	}
 	
 	/**
-	*	Zerlegung des Knotenarray
+	*	Funktion zur Zerlegung des Knotenarray
 	*/
 	function knoten_zerlegung(){
-		foreach($this->knoten_array as $name => $inhalt){
-			if($this->knoten==false and $this->blatt==false){
-				$this->knoten_array_oben_passiv=$this->knoten_array; 
-				$this->knoten_block_oben_passiv="visibility";
-			}
-			if($this->knoten==true and $this->blatt==false){
-				$this->knoten_array_oben_passiv[$name]=array_slice($this->knoten_array[$name],0,$this->knoten_schnitt);
-				$this->knoten_block_oben_passiv="visibility";
-				
-				$this->knoten_array_oben_aktiv[$name]=array_slice($this->knoten_array[$name],$this->knoten_schnitt,1);
-				$this->knoten_block_oben_aktiv="visibility";
-				
-		$this->knoten_array_unten_passiv[$name]=array_slice($this->knoten_array[$name],$this->knoten_schnitt+1,$this->anzahl_knoten-1);
-				$this->knoten_block_unten_passiv="visibility";
-				
-			}
-			if($this->knoten==true and $this->blatt==true){
-				$this->knoten_array_oben_passiv[$name]=array_slice($this->knoten_array[$name],0,$this->knoten_schnitt+1);
-				$this->knoten_block_oben_passiv="visibility";
-				
-				$this->knoten_array_unten_passiv[$name]=array_slice($this->knoten_array[$name],$this->knoten_schnitt+1,$this->anzahl_knoten-1);
-				$this->knoten_block_unten_passiv="visibility";
-			}
+	$j=0;
+	$k=0;
+	$l=0;
+	$anzahl=count($this->knoten_array[knoten_id]);
+	
+		if($this->knoten==false and $this->blatt==false){  // wenn kein Knoten und kein Blatt aktiv
+			$this->knoten_array_oben_passiv=$this->knoten_array;
+			$this->knoten_block_oben_passiv="visibility";
 		}
-	}
-	
-	
-	/**
-	* Bestimmung des Knotenschnittpunktes
-	*/
-	function schnittstelle_knoten(){
-		$test1=array_slice($this->knoten_array,0,1);  // Zerlegung in Einzelarray
-		foreach($test1 as $name => $inhalt){
-			$i=0;
-			$this->anzahl_knoten=count($inhalt);  // Bestimmung der Anzahl der Datensaetze - Knoten
-			foreach($inhalt as $name1 => $inhalt1){
-				if($name1==$this->knoten){
-					$this->knoten_schnitt=$i;  // Bestimmung Knoten - Schnittstelle
+		
+		for($i=0;$i<$anzahl;$i++){
+			if($this->knoten and $this->blatt==false){  // wenn ein Knoten aktiv und kein Blatt aktiv
+				if($i<$this->knoten_schnitt){
+					$this->knoten_array_oben_passiv[knoten_id][$j]=$this->knoten_array[knoten_id][$i];  // knoten_id
+					$this->knoten_array_oben_passiv[knoten_name][$j]=$this->knoten_array[knoten_name][$i];  // knoten_name
+					$this->knoten_array_oben_passiv[knoten_pfad][$j]=$this->knoten_array[knoten_pfad][$i];  // knoten_pfad
+					$this->knoten_block_oben_passiv='visibility';
+					$j++;
 				}
-				$i++;
+				if($i==$this->knoten_schnitt){
+					$this->knoten_array_oben_aktiv[knoten_id][$k]=$this->knoten_array[knoten_id][$i];  // knoten_id
+					$this->knoten_array_oben_aktiv[knoten_name][$k]=$this->knoten_array[knoten_name][$i];  // knoten_name
+					$this->knoten_array_oben_aktiv[knoten_pfad][$k]=$this->knoten_array[knoten_pfad][$i];  // knoten_pfad
+					$this->knoten_block_oben_aktiv='visibility';
+					$k++;
+				}
+				if($i>$this->knoten_schnitt){
+					$this->knoten_array_unten_passiv[knoten_id][$l]=$this->knoten_array[knoten_id][$i];  // knoten_id
+					$this->knoten_array_unten_passiv[knoten_name][$l]=$this->knoten_array[knoten_name][$i];  // knoten_name
+					$this->knoten_array_unten_passiv[knoten_pfad][$l]=$this->knoten_array[knoten_pfad][$i];  // knoten_pfad
+					$this->knoten_block_unten_passiv='visibility';
+					$l++;
+				}
+			}
+			if($this->knoten and $this->blatt){
+				if($i<=$this->knoten_schnitt){
+					$this->knoten_array_oben_passiv[knoten_id][$j]=$this->knoten_array[knoten_id][$i];  // knoten_id
+					$this->knoten_array_oben_passiv[knoten_name][$j]=$this->knoten_array[knoten_name][$i];  // knoten_name
+					$this->knoten_array_oben_passiv[knoten_pfad][$j]=$this->knoten_array[knoten_pfad][$i];  // knoten_pfad
+					$this->knoten_block_oben_passiv='visibility';
+					$j++;
+				}
+				if($i>$this->knoten_schnitt){
+					$this->knoten_array_unten_passiv[knoten_id][$l]=$this->knoten_array[knoten_id][$i];  // knoten_id
+					$this->knoten_array_unten_passiv[knoten_name][$l]=$this->knoten_array[knoten_name][$i];  // knoten_name
+					$this->knoten_array_unten_passiv[knoten_pfad][$l]=$this->knoten_array[knoten_pfad][$i];  // knoten_pfad
+					$this->knoten_block_unten_passiv='visibility';
+					$l++;
+				}
 			}
 		}
 	}
