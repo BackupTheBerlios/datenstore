@@ -121,7 +121,8 @@ function bloecke_darstellen($string,$tabelle,$wert1){
 
 /***************** Templat ansehen ***********/
 if($HTTP_POST_VARS[test]=='ansehen'){
-	header ("Location: aendern.html");  // Umleitung des Browsers
+	$wandlung=substr($HTTP_POST_VARS[datei],0,-5)."html";
+	header ("Location: $wandlung");  // Umleitung des Browsers
 }
 ?>
 
