@@ -20,10 +20,6 @@ aus Einer Templatdatei
 
 if($erstellen and is_file($datei_ausg)){
 	
-	$form[input]="<input";
-	$form[textarea]="<textarea";
-	$form[select]="<select";
-	
 	/********* Ausgabe der Uebersichtsdatei **********/
 	$laenge=strlen($datei_ausg);
 	$datei_eing=substr($datei_ausg,0,$laenge-5);
@@ -48,20 +44,10 @@ if($erstellen and is_file($datei_ausg)){
 		/********* wenn Block *************/
 		if(eregi("(<pattemplate:*)",$zeile) or eregi("(</pattemplate:*)",$zeile)) $zeile=bloecke_darstellen($zeile,$tabelle,$wert1); 
 		
-		/************* wenn Platzhalter ******************/
-		for($i=0;$i<strlen($zeile);$i++){
-			$zeichen=substr($zeile,$i,1);
-			if($zeichen=="{"){
-				$zeichen="<div STYLE='color:red'>{";
-			}
-			if($zeichen=="}"){
-				$zeichen="}</div>";
-			}
-			$zeile1 .=$zeichen;
-		}
+		/*********** Darstellung der Formulardaten *************/
+		$zeile=formulardaten($zeile);
 		
-		
-		fputs($fp1,$zeile1);  // Ausgabe in Datei
+		fputs($fp1,$zeile);  // Ausgabe in Datei
 		
 	}
 		fclose($fp1);
@@ -109,4 +95,33 @@ function bloecke_darstellen($string,$tabelle,$wert1){
 
 	return $wert;
 }
+
+	/**
+	* Darstellung der Variablennamen eines Formular
+	*
+	*/
+	function formulardaten($zeile){
+		$zeile_neu="";
+		$teile1=explode("<",$zeile);
+		for($i=1;$i<count($teile1);$i++){
+			if(eregi("input",$teile1[$i]) or eregi("select",$teile1[$i]) or eregi("textarea",$teile1[$i])){
+				$variable1=$teile1[$i];
+				$variable2=explode(" ",$variable1);
+				for($j=0;$j<count($variable2);$j++){
+					if(eregi("name=",$variable2[$j])){
+						$variable3=substr($variable2[$j],6,strlen($variable2[$j])-1);
+						$variable3=ereg_replace(">","",$variable3);
+						if(strlen($variable3)>0){
+							$variable3="<div style='color:red'>$".substr($variable3,0,-1)."</div>";
+						}
+					}
+				}
+				$zeile_neu .= "<".$teile1[$i].$variable3;
+			}
+			else{
+				$zeile_neu .= "<".$teile1[$i];
+			}
+		}
+	return $zeile_neu;
+	}
 ?>
