@@ -1,5 +1,5 @@
 <?PHP
- 
+
 /**
 * Variable prefix
 * @access	public
@@ -44,7 +44,7 @@ define( "patTEMPLATE_TYPE_SIMPLECONDITION", "SIMPLECONDITION" );
 * @package		patTemplate
 * @access		public	
 * @author		Stephan Schmidt <schst@php-tools.de>
-* @version		2.4 ($Id: patTemplate.inc,v 1.1 2002/09/25 13:10:00 StephanWalter Exp $)
+* @version		2.4 ($Id: patTemplate.inc,v 1.2 2002/09/30 12:04:53 StephanWalter Exp $)
 */
 class	patTemplate
 {
@@ -1754,18 +1754,6 @@ function	setType( $type = "" )
 
 		}
 		echo	"</table>";
-	}
-	
-	/**
-	* Zusaetzliche Funktion zur Ausgabe
-	* eines Template in eine Datei
-	* Als Parameter der Funktion werden folgende Argumente uebergeben
-	* 1. Ort der Ausgabe
-	* 2. Name der Datei, in der das Templat abgelegt wird.
-	*/
-	
-	function Ausgabe_in_Datei(){
-	 echo "neue Funktion in der Klasse !";
 	}
 }
 ?>

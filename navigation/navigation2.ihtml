@@ -1,0 +1,28 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Navigation2.ihtml</title>
+</head>
+<body>
+<h2>Navigationsleiste</H2>
+
+<TABLE WIDTH="100" CELLSPACING="0" CELLPADDING="0" BORDER="1" BORDERCOLOR="#008000">
+<PATTEMPLATE:TMPL NAME="passiv" VISIBILITY="hidden">
+	<TR>
+	    <TD>&nbsp;</TD>
+	    <TD>&nbsp;<A HREF="navigation1.php?knoten={KNOTEN_ID}&seite={KNOTEN_PFAD}">{KNOTEN_NAME}</a></TD>
+	</TR>
+</PATTEMPLATE:TMPL>
+
+<PATTEMPLATE:TMPL NAME="aktiv" VISIBILITY="hidden">
+	<TR>
+	    <TD BGCOLOR="#FF0000">&nbsp;</TD>
+	    <TD>&nbsp;<A HREF="navigation1.php?knoten={KNOTEN_ID}&seite={KNOTEN_PFAD}">{KNOTEN_NAME}</a></TD>
+	</TR>
+</PATTEMPLATE:TMPL>
+</TABLE>
+
+</body>
+</html>
+</PATTEMPLATE:TMPL>
