@@ -1,0 +1,118 @@
+<pattemplate:tmpl name="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body bgcolor="#FDD786">
+<pattemplate:tmpl name="haupt" type="condition" conditionvar="zugang">
+	<pattemplate:sub condition="nein">
+	<!-- BEGINN Block Passwort -->
+	<table cellspacing="2" cellpadding="2" border="1" bordercolor="#ff0000">
+		<tr>
+			<td colspan="3" height="200">&nbsp;</td>
+		</tr>
+		<form action="../index.html" method="get" target="_parent">
+		<tr>
+				<td width="150">&nbsp;</td>
+		    <td>Benutzer: </td>
+		    <td><input type="Text" name="benutzer"></td>
+		</tr>
+		<tr>
+				<td></td>
+		    <td>Passwort: </td>
+		    <td><input type="Text" name="passwd"></td>
+		</tr>
+		<tr>
+				<td></td>
+		    <td colspan="2" align="center"><input type="Submit" name="absenden"></td>
+		</tr>
+		</form>
+	</table>
+	<!-- Ende Block Passwort -->
+	</pattemplate:sub>
+	<!-- Beginn Block Angaben -->
+	<pattemplate:sub condition="ja">
+		<table cellspacing="2" cellpadding="2" border="1" bordercolor="#008000">
+		<form action="zugang.php" target="haupt" method="get">
+			<tr>
+					<td width="150">&nbsp;</td>
+			    <td>Name: </td>
+			    <td><input type="Text" name="name" value="{NAME}"></td>
+			    <td>Vorname: </td>
+			    <td><input type="Text" name="vorname" value="{VORNAME}"></td>
+			</tr>
+			<tr>
+					<td></td>
+			    <td>Passwort: </td>
+			    <td><input type="Text" name="passwort" value="{PASSWORT}"></td>
+			    <td>Benutzername: </td>
+			    <td><input type="Text" name="benutzer" value="{BENUTZERNAME}" disabled></td>
+			</tr>
+			<tr>
+					<td></td>
+			    <td>PLZ: </td>
+			    <td><input type="Text" name="plz" value="{PLZ}"></td>
+					<td>Ort: </td>
+					<td><input type="Text" name="ort" value="{ORT}"></td>
+	
+			</tr>
+			<tr>
+					<td></td>
+					<td>Strasse: </td>
+			    <td><input type="Text" name="strasse" value="{STRASSE}"></td>
+					<td>Haus - Nr.: </td>
+			    <td><input type="Text" name="nr" value="{NR}"></td>
+			</tr>
+			<tr>
+					<td></td>
+					<td>Telefon: </td>
+			    <td><input type="Text" name="telefon" value="{TELEFON}"></td>
+			    <td>Handy: </td>
+			    <td><input type="Text" name="handy" value="{HANDY}"></td>
+
+			</tr>
+			<tr>
+					<td></td>
+			    <td>E-Mail: </td>
+			    <td><input type="Text" name="email" value="{EMAIL}"></td>				
+			    <td>Fax: </td>
+			    <td><input type="Text" name="fax" value="{FAX}"></td>
+			    <td></td>
+
+			</tr>
+			<tr>
+				<td><input type="Hidden" name="user_id" value="{USER_ID}"></td>
+				<td><input type="Hidden" name="benutzername" value="{BENUTZERNAME}"></td>
+				<td></td>
+		    <td></td>				
+			</tr>
+			<tr>
+			    <td colspan="4" align="center"><input type="Submit" value="aendern" name="aendern"></td>
+			</tr>
+		</form>
+		
+		<pattemplate:tmpl name="information" type="oddeven">
+			<pattemplate:sub condition="odd">
+			<tr>
+				<td bgcolor="#DB9935" width="300">
+					{ZEIT}<br>{INFO}
+				</td>
+			</tr>
+			</pattemplate:sub>
+			<pattemplate:sub condition="even">
+			<tr>
+				<td bgcolor="#ffffff" width="300">
+					{ZEIT}<br>{INFO}
+				</td>
+			</tr>
+			</pattemplate:sub>
+		</pattemplate:tmpl>
+		</table>
+
+	</pattemplate:sub>
+	<!-- Ende Block Angaben -->
+</pattemplate:tmpl>
+</body>
+</html>
+</pattemplate:tmpl>

@@ -1,0 +1,36 @@
+<pattemplate:tmpl type="standard" name="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body>
+<pattemplate:tmpl name="haupt" type="simplecondition" requiredvars="anzeige">
+		<!-- Beginn Design 'anlegen' -->
+			<table cellspacing="2" cellpadding="2" border="1" bordercolor="#008000">
+				<tr>
+					<td colspan="4" align="center">{UEBERSCHRIFT}</td>
+				</tr>
+			<form action="anlegen.php" method="post" target="haupt">
+				<tr>
+				    <td style="color:{ERR_NAME}">Name: </td>
+				    <td><input type="Text" name="NAME" value="{NAME}"></td>
+				    <td style="color:{ERR_VORNAME}">Vorname: </td>
+				    <td><input type="Text" name="VORNAME" value="{VORNAME}"></td>
+				</tr>
+				<tr>
+				    <td style="color:{ERR_PASSWORT}">Passwort: </td>
+				    <td><input type="Text" name="PASSWORT" value="{PASSWORT}"></td>
+				    <td style="color:{ERR_BENUTZERNAME}">Benutzername: </td>
+				    <td><input type="Text" name="BENUTZERNAME" value="{BENUTZERNAME}"></td>
+				</tr>
+			<tr>
+			    <td colspan="4" align="center"><input type="Submit" name="anlegen" value="anlegen"></td>
+			</tr>
+			</form>
+			</table>
+		<!-- Ende Design 'anlegen' -->
+</pattemplate:tmpl>
+</body>
+</html>
+</pattemplate:tmpl>
