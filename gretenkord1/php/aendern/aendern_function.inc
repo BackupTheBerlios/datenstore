@@ -47,4 +47,18 @@ function veraenderung_array_text($spalte,$antwort){
 	}
 	return $antwort;
 }
+
+/**
+* Umwandlung eines MySQL Timestamp - Feldes
+*
+* Ausgabe in der typisch mitteleuropaeischen Form
+*/
+function zeit_verbesserung($zeit){  // Umwandlung des Timestampes in Normalzeit
+	$datum = substr($zeit,6,2)."."; // Tag des Monat
+	$datum .= substr($zeit,4,2)."."; // Monat
+	$datum .= substr($zeit,0,4)."&nbsp;&nbsp;";  // Jahr
+	$datum .= substr($zeit,8,2).":";  // Stunde
+	$datum .= substr($zeit,10,2);  // Minute
+	return $datum;
+}
 ?>

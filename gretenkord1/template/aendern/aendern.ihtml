@@ -69,6 +69,12 @@
 	<table cellspacing="2" cellpadding="2" border="1" bordercolor="blue">
 		<form action="aendern.php" target="haupt" method="post">
 			<tr>
+				 <td>Anrede: </td>
+			   <td><input type="Text" name="anrede" value="{ANREDE}"></td>
+			   <td>Anlagedatum: </td>
+			   <td><input type="Text" name="datum" value="{DATUM}" DISABLED></td>
+			</TR>
+			<tr>
 			    <td>Name: </td>
 			    <td><input type="Text" name="name" value="{NAME}"></td>
 			    <td>Vorname: </td>
@@ -80,6 +86,14 @@
 			    <td>Benutzername: </td>
 			    <td><input type="Text" name="benutzer" value="{BENUTZERNAME}"></td>
 			</tr>
+			<tr>
+				<td>Adresse best&auml;tigt: </td>
+			  <td> best&auml;tigt: <input TYPE="Radio" NAME="adresse_bestaetigt" VALUE="ja" {ADRESSE_AKTIV}>
+						 unbest&auml;tigt: <input TYPE="Radio" NAME="adresse_bestaetigt" VALUE="nein" {ADRESSE_INAKTIV}>
+				</td>
+			  <td>weitere Adressen: </td>
+			  <td>{WEITERE_ADRESSEN} Adresse/n vorhanden !</td>
+			</TR>
 			<tr>
 			    <td>PLZ: </td>
 			    <td><input type="Text" name="plz" value="{PLZ}"></td>
@@ -109,8 +123,10 @@
 			<tr>
 				<td>Funktion: </td>
 				<td><input type="Text" name="bemerkung" value="{BEMERKUNG}"></td>
-				<td><input type="Hidden" name="aendern_erfolgt" value="1"></td>
-		    <td><input type="Hidden" name="aendern_hidden" value="{USER_ID}"></td>				
+				<td>Aktiv / Passiv: </td>
+		    <td> passiv: <input TYPE="Radio" NAME="aktiv" VALUE="passiv" {ZUSTAND_PASSIV}> aktiv: <input TYPE="Radio" NAME="aktiv" VALUE="aktiv" {ZUSTAND_AKTIV}></td>
+						<input type="Hidden" name="aendern_erfolgt" value="1">
+						<input type="Hidden" name="aendern_hidden" value="{USER_ID}">
 			</tr>
 			<!-- Ende Design 'person' -->
 </PATTEMPLATE:TMPL>

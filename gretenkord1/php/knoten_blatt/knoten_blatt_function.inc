@@ -2,25 +2,6 @@
 /*********** lokale Funktionsdatei Modul 'knoten_blatt' ****************/
 
 /**
-* lesen Verzeichnisbaum
-* neue Variante
-*/
-function verzeichnis($kunde){
-	$i=0;
-	$pfad=opendir($kunde); // oeffnen Hauptverzeichnis 'kunde'
-	while($eintrag=readdir($pfad)){
-		if($eintrag!='.' and $eintrag!='..' and $eintrag!='CVS'){
-			$verzeichnis[$i]=$eintrag;
-			$i++;
-		}
-	}
-	closedir($pfad);
-	clearstatcache();
-	return $verzeichnis;
-}
-
-
-/**
 * Abgleich Verzeichnisse mit Einstellung fuer Knoten Pulldown
 */
 function knoten_pulldown($verzeichnis,$antwort1){
@@ -56,17 +37,6 @@ function seite_pulldown($seite){
 				$inhalt[$i] .="<option value='$eintrag[$j]'>".$eintrag[$j]."</option>";
 			}
 		}
-	}
-	return $inhalt;
-}
-
-/**
-* Umwandlung der Verzeichnisse fuer hinzufuegen Knoten und Blaetter
-*/
-function verzeichnis_simple($verzeichnisse){
-	$anzahl=count($verzeichnisse);
-	for($i=0;$i<$anzahl;$i++){
-		$inhalt .="<option value='$verzeichnisse[$i]'>".$verzeichnisse[$i]."</option>";
 	}
 	return $inhalt;
 }

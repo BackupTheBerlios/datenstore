@@ -16,7 +16,7 @@ $db = new patMysqlDbc($db_host,$db_name,$db_user,$db_pass);
 $db->connect();
 
 if($absenden){  // Eroeffnungsmenue des CMS
-	$query1="select id,Benutzername,Passwort from user"; // Anfrage 1
+	$query1="select * from user"; // Anfrage 1
 	$abfrage1=$db->query($query1);
 	$zugang=start_passwort($abfrage1,$benutzer,$passwd);
 }

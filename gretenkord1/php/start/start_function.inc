@@ -5,25 +5,16 @@
 * Passwortueberpruefung an hand der datenbankabfrage
 * 
 * Wenn das Passwort und Benutzer richtig, so wird das Array '$zugang' zurueckgegeben
-* wenn Passwort und Benutzer falsch, dann kein 'return'
 */
 function start_passwort($abfrage,$benutzer,$passwd){ // Kontrolle des Passwortes
-$i=0;
 	while($wert=$abfrage->fetch_array(patDBC_TYPEASSOC)){
-		foreach($wert as $name => $inhalt){
-			$ausgabe[$name][$i]=$inhalt;
-		}
-	$i++;
-	}
-	$k=count($ausgabe);
-	for($j=0;$j<$k;$j++){
-		if($ausgabe[Benutzername][$j]==$benutzer and $ausgabe[Passwort][$j]==$passwd){
+		if($wert[Benutzername]==$benutzer and $wert[Passwort]==$passwd and $wert[aktiv]=='aktiv'){
 			$zugang[erlaubt]='ja'; // Zugang zu Block 2
-			$zugang[id]=$ausgabe[id][$j]; // Speicherung Benutzer-ID
+			$zugang[id]=$wert[id]; // Speicherung Benutzer-ID
 			return $zugang;
-			break;
 		}
 	}
+	return;
 }
 
 /**
@@ -74,11 +65,29 @@ function info_loeschen($loeschen,$db){
 
 /**
 * diese Funktion bestimmt den Absender an Hand der User ID
-*
+* und traegt diesen User als Klartext ein
 *
 */
 function absender_bestimmen($absender,$db){
-	echo "in Absender bestimmen !";
-	return;
+$query1="select * from user";
+	$antwort1=$db->query($query1);
+	$antwort1=array_bildung($antwort1);
+	
+	$i=0;
+	foreach($absender[Absender] as $name => $inhalt){
+	if($inhalt==0){
+		$absender[Absender][$i]="Information an Alle !";
+	}
+	
+		$k=0;
+		foreach($antwort1[id] as $name1 => $inhalt1){
+			if($inhalt==$inhalt1){
+				$absender[Absender][$i]=$antwort1[Name][$k]."&nbsp;&nbsp;".$antwort1[Vorname][$k]."&nbsp;&nbsp;- ".$antwort1[Bemerkung][$k]." -";
+			}
+		$k++;
+		}
+	$i++;
+	}
+	return $absender;
 }
 ?>

@@ -9,6 +9,8 @@ include_once(PHP_PFAD.'function.inc');  // zentrale Funktionsdatei
 /*************** lokale Includedateien **********************/
 include_once(PHP_START.'start_function.inc');
 
+
+/************************* Steuerungsblock ***********************/
 $tmpl = new patTemplate();
 $tmpl->setBasedir(T_START);
 $tmpl->readTemplatesFromFile('haupt.ihtml');
@@ -20,11 +22,11 @@ $zugang = $db->connect();
 if(($absenden and $zugang)){ // wenn Formular Passwort und Datenbankconnect
 
 	foreach($HTTP_GET_VARS as $name => $inhalt){  // Sicherheitskontrolle Eingabe
-		$inhalt=sicherheit($inhalt);
+		$inhalt=sicherheit($inhalt);  // Verhinderung Sabotage
 		$HTTP_GET_VARS[$name]=$inhalt;
 	}
 	
-	$query1="select id,Benutzername,Passwort from user";
+	$query1="select * from user";
 	$abfrage1=$db->query($query1);
 	$zugang=start_passwort($abfrage1,$HTTP_GET_VARS[benutzer],$HTTP_GET_VARS[passwd]);
 }

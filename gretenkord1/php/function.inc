@@ -107,7 +107,7 @@ $i=0;
 }
 
 /**
-* Umwandlung eines MySQL Date -Time - Feldes
+* Umwandlung eines MySQL Timestamp - Feldes
 *
 * Ausgabe in der typisch mitteleuropaeischen Form
 */
@@ -131,4 +131,33 @@ function zeit_verbesserung($zeit){  // Umwandlung des Timestampes in Normalzeit
 		$eingabe=ereg_replace(";","",$eingabe);
 		return $eingabe;
 	}
+
+/**
+* lesen Verzeichnisbaum
+* neue Variante
+*/
+function verzeichnis($kunde){
+	$i=0;
+	$pfad=opendir($kunde); // oeffnen Hauptverzeichnis 'kunde'
+	while($eintrag=readdir($pfad)){
+		if($eintrag!='.' and $eintrag!='..' and $eintrag!='CVS' and $eintrag!='php' and $eintrag!='layout' and $eintrag!='bilder'){
+			$verzeichnis[$i]=$eintrag;
+			$i++;
+		}
+	}
+	closedir($pfad);
+	clearstatcache();
+	return $verzeichnis;
+}
+
+/**
+* Umwandlung der Verzeichnisse fuer hinzufuegen Knoten und Blaetter
+*/
+function verzeichnis_simple($verzeichnisse){
+	$anzahl=count($verzeichnisse);
+	for($i=0;$i<$anzahl;$i++){
+		$inhalt .="<option value='$verzeichnisse[$i]'>".$verzeichnisse[$i]."</option>";
+	}
+	return $inhalt;
+}
 ?>

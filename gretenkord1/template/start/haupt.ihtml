@@ -101,7 +101,7 @@
 		<td>{ZEIT}</td>
 		<td>von:{ABSENDER}<br>{INFO}</td>
 		<td ALIGN="center">
-			l&ouml;schen: <input type="checkbox" name="loeschen[{ID}]" value="{ID}">
+		l&ouml;schen: <input type="checkbox" name="loeschen[{ID}]" value="{ID}">
 		</td>
 		<td>&nbsp;</td>
 	</tr>			

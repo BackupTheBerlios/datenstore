@@ -4,7 +4,7 @@
 # http://www.phpmyadmin.net/ (download page)
 #
 # Host: localhost
-# Erstellungszeit: 10. Oktober 2002 um 14:09
+# Erstellungszeit: 11. Oktober 2002 um 12:59
 # Server Version: 3.23.51
 # PHP-Version: 4.2.2
 # Datenbank: `verwaltung`
@@ -25,6 +25,7 @@ CREATE TABLE adresse (
   Handy varchar(15) default NULL,
   EMail varchar(40) default NULL,
   Fax varchar(40) default NULL,
+  adresse_bestaetigt enum('nein','ja') NOT NULL default 'nein',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='Adresstabelle';
 
@@ -32,12 +33,12 @@ CREATE TABLE adresse (
 # Daten für Tabelle `adresse`
 #
 
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (1, 1, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '0377244365', '123365985', 'Vermessung@Bigfoot.de', '165465464646');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (18, 22, '08289', 'Schneeberg', '', '', '', '', '', '');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (32, 36, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '03772', '44365', 'thomas@web.de', '0321332658963');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (31, 35, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '0377244365', '123123123', 'matthias@web.de', '321321321');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (33, 37, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '', '', '', '');
-INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax) VALUES (34, 38, NULL, '', '', '', NULL, NULL, NULL, NULL);
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (1, 1, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '0377244365', '123365985', 'Vermessung@Bigfoot.de', '165465464646', 'ja');
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (18, 22, '08289', 'Schneeberg', '', '', '', '', '', '', 'ja');
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (32, 36, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '03772', '44365', 'thomas@web.de', '0321332658963', 'nein');
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (31, 35, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '0377244365', '123123123', 'matthias@web.de', '321321321', 'nein');
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (33, 37, '08289', 'Schneeberg', 'Neujahrsstr.', '1', '', '', '', '', 'nein');
+INSERT INTO adresse (id, user_id, PLZ, Ort, Strasse, Nr, Telefon, Handy, EMail, Fax, adresse_bestaetigt) VALUES (34, 38, NULL, '', '', '', NULL, NULL, NULL, NULL, 'nein');
 # --------------------------------------------------------
 
 #
@@ -75,7 +76,7 @@ CREATE TABLE archiv (
   minibild2 varchar(75) default NULL,
   bild1 varchar(75) default NULL,
   bild2 varchar(75) default NULL,
-  user_id int(3) NOT NULL default '0',
+  user_id int(3) default NULL,
   datum timestamp(14) NOT NULL,
   user_id_kontrolle int(3) default NULL,
   kunde_id int(3) default NULL,
@@ -209,37 +210,6 @@ INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (8, 18, 8);
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `kunde`
-#
-
-CREATE TABLE kunde (
-  id int(4) NOT NULL auto_increment,
-  anrede enum('Frau','Herr') NOT NULL default 'Frau',
-  name varchar(50) default NULL,
-  vorname varchar(50) default NULL,
-  telefon varchar(25) default NULL,
-  handy varchar(25) default NULL,
-  e_mail varchar(35) default NULL,
-  datum timestamp(14) NOT NULL,
-  strasse varchar(75) NOT NULL default '',
-  plz varchar(5) NOT NULL default '',
-  hausnummer varchar(5) default NULL,
-  ort varchar(75) default NULL,
-  bestaetigt enum('Nein','Ja') NOT NULL default 'Nein',
-  profil1 varchar(50) default NULL,
-  profil2 varchar(50) default NULL,
-  profil3 varchar(50) default NULL,
-  status enum('unsicher','sicher') NOT NULL default 'unsicher',
-  PRIMARY KEY  (id)
-) TYPE=MyISAM COMMENT='Kundendaten';
-
-#
-# Daten für Tabelle `kunde`
-#
-
-# --------------------------------------------------------
-
-#
 # Tabellenstruktur für Tabelle `rechte`
 #
 
@@ -278,17 +248,19 @@ CREATE TABLE rechte_user (
 # Daten für Tabelle `rechte_user`
 #
 
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (70, 1, 10);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (69, 1, 9);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (68, 1, 8);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (114, 1, 10);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (113, 1, 9);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (112, 1, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (4, 2, 1);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (67, 1, 4);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (111, 1, 4);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (51, 34, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (66, 1, 2);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (110, 1, 2);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (52, 36, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (50, 35, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (53, 37, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (65, 1, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (109, 1, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (116, 22, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (117, 22, 8);
 # --------------------------------------------------------
 
 #
@@ -344,37 +316,19 @@ CREATE TABLE rezepte_info (
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `test`
-#
-
-CREATE TABLE test (
-  id int(3) NOT NULL auto_increment,
-  text varchar(20) NOT NULL default '',
-  PRIMARY KEY  (id)
-) TYPE=MyISAM PACK_KEYS=0 DELAY_KEY_WRITE=1 COMMENT='Testtabelle ';
-
-#
-# Daten für Tabelle `test`
-#
-
-INSERT INTO test (id, text) VALUES (1, 'aaa');
-INSERT INTO test (id, text) VALUES (2, 'bbb');
-INSERT INTO test (id, text) VALUES (4, 'ddd');
-INSERT INTO test (id, text) VALUES (5, 'eee');
-INSERT INTO test (id, text) VALUES (6, 'fff');
-# --------------------------------------------------------
-
-#
 # Tabellenstruktur für Tabelle `user`
 #
 
 CREATE TABLE user (
   id int(3) NOT NULL auto_increment,
+  Anrede varchar(10) default NULL,
   Name varchar(40) NOT NULL default '',
   Vorname varchar(40) NOT NULL default '',
   Passwort varchar(30) NOT NULL default '',
   Benutzername varchar(30) NOT NULL default '',
+  aktiv varchar(6) NOT NULL default 'passiv',
   Bemerkung varchar(40) default ' &nbsp;',
+  datum timestamp(14) NOT NULL,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='Personentabelle';
 
@@ -382,10 +336,30 @@ CREATE TABLE user (
 # Daten für Tabelle `user`
 #
 
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (1, 'Krauss', 'Stephan', 'stephan', 'stephan', 'Superuser');
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (22, 'Krauss', 'Antje', 'antje', 'antje', '  User');
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (35, 'Krauss', 'Matthias', 'matthias', 'matthias', '  Redaktion');
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (36, 'Krauss', 'Thomas', 'thomas', 'thomas', '  Redaktion');
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (37, 'Max', 'Mustermann', 'max', 'max', '  ');
-INSERT INTO user (id, Name, Vorname, Passwort, Benutzername, Bemerkung) VALUES (38, 'Mies', 'Mies', 'mies', 'mies', ' &nbsp;');
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (1, 'Herr', 'Krauss', 'Stephan', 'stephan', 'stephan', 'aktiv', 'Super', 20021011102017);
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (22, 'Frau', 'Krauss', 'Antje', 'antje', 'antje', 'aktiv', 'User', 20021011102017);
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (35, NULL, 'Krauss', 'Matthias', 'matthias', 'matthias', 'passiv', '  Redaktion', 20021011102017);
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (36, NULL, 'Krauss', 'Thomas', 'thomas', 'thomas', 'passiv', '  Redaktion', 20021011102017);
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (37, NULL, 'Max', 'Mustermann', 'max', 'max', 'passiv', '  ', 20021011102017);
+INSERT INTO user (id, Anrede, Name, Vorname, Passwort, Benutzername, aktiv, Bemerkung, datum) VALUES (38, NULL, 'Mies', 'Mies', 'mies', 'mies', 'passiv', ' &nbsp;', 20021011102017);
+# --------------------------------------------------------
+
+#
+# Tabellenstruktur für Tabelle `user_profil`
+#
+
+CREATE TABLE user_profil (
+  id int(3) NOT NULL auto_increment,
+  user_id int(3) NOT NULL default '0',
+  profil1 varchar(50) default NULL,
+  profil2 varchar(50) default NULL,
+  profil3 varchar(50) default NULL,
+  user_status enum('unsicher','sicher') NOT NULL default 'unsicher',
+  PRIMARY KEY  (id)
+) TYPE=MyISAM COMMENT='Tabelle beinhaltet Benutzerprofil';
+
+#
+# Daten für Tabelle `user_profil`
+#
+
 

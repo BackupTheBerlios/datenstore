@@ -16,15 +16,16 @@ $db->connect();
 /********* Steuerung Anzeigen der Userdaten und Rechte *********/
 if($aendern){
 	if($aendern_erfolgt){
-		  // Update der Userdaten in Tabelle 'user'
+		// Update der Userdaten in Tabelle 'user'
 		$query1 = "update user SET user.Name='$name', user.Vorname='$vorname', ";
-		$query1 .= "user.Passwort='$passwort', user.Benutzername='$benutzer', user.Bemerkung='$bemerkung' ";
+		$query1 .= "user.Passwort='$passwort', user.Benutzername='$benutzer', user.Bemerkung='$bemerkung', user.aktiv='$aktiv', user.Anrede='$anrede' ";
 		$query1 .= "where user.id=$aendern_hidden";
 		$anfrage1 = $db->query($query1);
 		
 			// Update der Userdaten in Tabelle 'adresse'
 		$query1 = "update adresse SET adresse.PLZ='$plz', adresse.Ort='$ort', adresse.Strasse='$strasse', adresse.Nr='$nr', ";
-		$query1 .= "adresse.Telefon='$telefon', adresse.Handy='$handy', adresse.EMail='$email', adresse.Fax='$fax' ";
+		$query1 .= "adresse.Telefon='$telefon', adresse.Handy='$handy', adresse.EMail='$email', adresse.Fax='$fax', ";
+		$query1 .="adresse.adresse_bestaetigt='$adresse_bestaetigt' ";
 		$query1 .= "where adresse.user_id=$aendern_hidden";
 		$anfrage1 = $db->query($query1);
 		
@@ -43,6 +44,26 @@ if($aendern){
 	$tmpl->setAttribute('person','visibility','visibility');
 	$tmpl->setAttribute('rechte','visibility','visibility');
 	$tmpl->setAttribute('fuss','visibility','visibility');
+	
+	if($antwort1[aktiv][0]=='aktiv'){  // Bestimmung ob User aktiv / inaktiv
+		$tmpl->addVar('person','ZUSTAND_AKTIV','checked');
+	}
+	else{
+		$tmpl->addVar('person','ZUSTAND_PASSIV','checked');
+	}
+	
+	$antwort1[datum][0]=zeit_verbesserung($antwort1[datum][0]);  // Umwandlung Datum
+	
+	if($antwort1[adresse_bestaetigt][0]=='ja'){  // Bestimmung ob Adresse unbestaetigt /bestaetigt
+		$tmpl->addVar('person','ADRESSE_AKTIV','checked');
+	}
+	else{
+		$tmpl->addVar('person','ADRESSE_INAKTIV','checked');
+	}
+	
+	$anzahl_adressen=count($antwort1[PLZ]);  // Bestimmung Anzahl der Useradressen
+	$tmpl->addVar('person','WEITERE_ADRESSEN',$anzahl_adressen);
+	
 	$tmpl->addVars('person',$antwort1);
 	
 	$query1="select * from rechte order by id";  // Ermittlung aller Rechte und anzeigen

@@ -6,7 +6,7 @@
 */
 function start_passwort($abfrage,$benutzer,$passwd){ // Kontrolle des Passwortes
 	while($wert=$abfrage->fetch_array(patDBC_TYPEASSOC)){
-		if($wert[Benutzername]==$benutzer and $wert[Passwort]==$passwd){
+		if($wert[Benutzername]==$benutzer and $wert[Passwort]==$passwd and $wert[aktiv]=='aktiv'){
 			$zugang[erlaubt]='ja'; // Zugang zu Block 2
 			$zugang[id]=$wert[id]; // Speicherung Benutzer-ID
 			return $zugang;
