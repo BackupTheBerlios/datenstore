@@ -1,0 +1,47 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body BGCOLOR="#FDE78E">
+<h2 ALIGN="center" STYLE="color:blue">&Uuml;bersicht &uuml;ber Userdaten</H2>
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="0" ALIGN="center">
+<TR>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Name: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Vorname: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Funktion: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Telefon: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Handy: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> E-Mail: </TD>
+    <TD ALIGN="center" BGCOLOR="#FBC955"> Fax: </TD>
+</TR>
+<PATTEMPLATE:TMPL TYPE="oddeven" NAME="liste">
+<PATTEMPLATE:SUB CONDITION="odd">
+<TR>
+    <TD>{NAME}</TD>
+    <TD>{VORNAME}</TD>
+    <TD>{BEMERKUNG}</TD>
+    <TD>{TELEFON}</TD>
+    <TD>{HANDY}</TD>
+    <TD>{EMAIL}</TD>
+    <TD>{FAX}</TD>
+</TR>
+</PATTEMPLATE:SUB>
+<PATTEMPLATE:SUB CONDITION="even">
+<TR>
+    <TD BGCOLOR="#FEAC7A">{NAME}</TD>
+    <TD BGCOLOR="#FEAC7A">{VORNAME}</TD>
+    <TD BGCOLOR="#FEAC7A">{BEMERKUNG}</TD>
+    <TD BGCOLOR="#FEAC7A">{TELEFON}</TD>
+    <TD BGCOLOR="#FEAC7A">{HANDY}</TD>
+    <TD BGCOLOR="#FEAC7A">{EMAIL}</TD>
+    <TD BGCOLOR="#FEAC7A">{FAX}</TD>
+</TR>
+</PATTEMPLATE:SUB>
+</PATTEMPLATE:TMPL>
+</TABLE>
+
+</body>
+</html>
+</PATTEMPLATE:TMPL>

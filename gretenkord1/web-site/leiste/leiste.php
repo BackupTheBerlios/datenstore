@@ -18,10 +18,10 @@ $db->connect();
 if($absenden){  // Eroeffnungsmenue des CMS
 	$query1="select id,Benutzername,Passwort from user"; // Anfrage 1
 	$abfrage1=$db->query($query1);
-	$zugang=leiste_passwort($abfrage1,$benutzer,$passwd);
+	$zugang=start_passwort($abfrage1,$benutzer,$passwd);
 }
 
-if($zugang[erlaubt]=='ja'){
+if($zugang){
 	$query1="select rechte_id from rechte_user where user_id='$zugang[id]'";
 	$abfrage1=$db->query($query1);
 	$i=0;

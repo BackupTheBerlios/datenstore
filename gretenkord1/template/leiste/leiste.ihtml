@@ -17,7 +17,7 @@
 	<!-- Beginn Block 'navi' -->	
 	<pattemplate:tmpl name="navi" VISIBILITY="hidden">
 		<tr>
-		    <td bgcolor="#FCE79E"><a href="../{MODUL}/{MODUL}.php" target="haupt">{RECHTE_ART}</a></td>
+		    <td bgcolor="#FCE79E"><a href="../{MODUL}/{MODUL}.php?" target="haupt">{RECHTE_ART}</a></td>
 		</tr>
 	</pattemplate:tmpl>
 	<!-- Ende Block 'navi' -->
@@ -25,7 +25,7 @@
 	<!-- Beginn Block 'logout' -->
 	<PATTEMPLATE:TMPL NAME="logout" VISIBILITY="hidden">
 		<tr>
-		    <td bgcolor="#FCE79E"><a href="../../index.php" TARGET="_parent">Logout</a></td>
+		    <td bgcolor="#FCE79E"><a href="../../index.php?" TARGET="_parent">Logout</a></td>
 		</tr>
 	</PATTEMPLATE:TMPL>
 	<!-- Ende Block 'logout' -->

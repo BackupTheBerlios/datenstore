@@ -18,11 +18,11 @@ $zugang = $db->connect();
 
 /********** Eroeffnungsmenue ***************/
 if(($absenden and $zugang)){ // wenn Formular Passwort und Datenbankconnect
+
 	foreach($HTTP_GET_VARS as $name => $inhalt){  // Sicherheitskontrolle Eingabe
 		$inhalt=sicherheit($inhalt);
 		$HTTP_GET_VARS[$name]=$inhalt;
 	}
-	
 	
 	$query1="select id,Benutzername,Passwort from user";
 	$abfrage1=$db->query($query1);
@@ -30,8 +30,7 @@ if(($absenden and $zugang)){ // wenn Formular Passwort und Datenbankconnect
 }
 
 /************ Darstellung der persoenlichen Daten *********************/
-if($zugang[erlaubt]=='ja' or $aendern or $leiste){ // Wenn Zugangskontrolle erfolgreich oder Info loeschen
-	
+if($zugang[erlaubt]=='ja' or $aendern or $leiste){ // Wenn Zugangskontrolle erfolgreich oder Info aendern oder Zugriff von Leiste
 	if($aendern){  // Veraenderung der persoenlichen Angaben
 		$query1=tabelle_adresse_aendern($HTTP_POST_VARS,$person_zugang);
 		$abfrage1=$db->query($query1);
@@ -40,16 +39,17 @@ if($zugang[erlaubt]=='ja' or $aendern or $leiste){ // Wenn Zugangskontrolle erfo
 	}
 	
 	if(!isset($zugang[id])){
-		$query1="select * from user,adresse where user.id=adresse.user_id and user.id='$person_zugang'";
+		$person=$person_zugang;
 	}
 	else{
-		$query1="select * from user,adresse where user.id=adresse.user_id and user.id='$zugang[id]'";
+		$person=$zugang[id];
 	}
 	
-	// wenn pers. Angaben von Navigationsleiste
 	if($leiste){
-		$query1="select * from user,adresse where user.id=adresse.user_id and user.id='$leiste'";
+		$person=$leiste;
 	}
+	
+	$query1="select * from user,adresse where user.id=adresse.user_id and user.id='$person'";
 	
 	$abfrage1=$db->query($query1);
 	$daten=array_bildung($abfrage1);
@@ -75,16 +75,7 @@ if($loeschen){
 }
 
 /*********** Darstellung der Informationen ********************/
-	if(!isset($zugang[id])){
-		$query1="select id,info,zeit,Absender from info where user_id='$person_zugang' order by zeit DESC";
-	}
-	else{
-		$query1="select id,info,zeit,Absender from info where user_id='$zugang[id]' order by zeit DESC";
-	}
-	
-	if($leiste){  // wenn Steuerung ueber Leiste
-		$query1="select id,info,zeit,Absender from info where user_id='$leiste' order by zeit DESC";
-	}
+	$query1="select id,info,zeit,Absender from info where user_id='$person' or user_id=0 order by zeit DESC";
 	
 	$abfrage1=$db->query($query1);
 	if($abfrage1->num_rows() > 0){
@@ -104,5 +95,4 @@ else{
 
 $db->close();
 $tmpl->displayParsedTemplate();
-
 ?>
