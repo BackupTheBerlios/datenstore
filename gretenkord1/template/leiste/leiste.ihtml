@@ -1,0 +1,36 @@
+<pattemplate:tmpl name="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body bgcolor="#FBB362" alink="#0000ff" vlink="#0000ff" link="#0000ff">
+	<table cellspacing="2" cellpadding="2" border="1" bordercolor="#ff0000">
+	<!-- Beginn Block 'person' -->
+	<pattemplate:tmpl name="person" VISIBILITY="hidden">
+		<tr>
+		    <td bgcolor="#FCE79E"><a href="../start/zugang.php?leiste={PERSON_ID}" target="haupt">pers&ouml;nliche Angaben</a></td>
+		</tr>
+	</pattemplate:tmpl>
+	<!-- Ende Block 'person' -->
+	
+	<!-- Beginn Block 'navi' -->	
+	<pattemplate:tmpl name="navi" VISIBILITY="hidden">
+		<tr>
+		    <td bgcolor="#FCE79E"><a href="../{MODUL}/{MODUL}.php" target="haupt">{RECHTE_ART}</a></td>
+		</tr>
+	</pattemplate:tmpl>
+	<!-- Ende Block 'navi' -->
+	
+	<!-- Beginn Block 'logout' -->
+	<PATTEMPLATE:TMPL NAME="logout" VISIBILITY="hidden">
+		<tr>
+		    <td bgcolor="#FCE79E"><a href="../../index.php" TARGET="_parent">Logout</a></td>
+		</tr>
+	</PATTEMPLATE:TMPL>
+	<!-- Ende Block 'logout' -->
+	</table>
+	
+</body>
+</html>
+</pattemplate:tmpl>

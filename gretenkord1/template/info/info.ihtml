@@ -1,0 +1,35 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body BGCOLOR="#FED892">
+<h2 ALIGN="center" STYLE="color:blue">schreiben einer Information</H2>
+
+<table BORDER="1" BORDERCOLOR="#FF0000">
+<form ACTION="info.php" METHOD="post">
+	<tr>
+		<td>an: </TD>
+		<td>
+		<select NAME="empfaenger">
+			<option VALUE="0">alle
+			<PATTEMPLATE:TMPL NAME="auswahl">
+			<option VALUE="{ID}">{NAME},&nbsp;{VORNAME}&nbsp;--&nbsp;{BEMERKUNG}
+			</PATTEMPLATE:TMPL>
+		</SELECT>
+		</td>
+	</TR>
+	<tr>
+		<td COLSPAN="2">
+			<textarea NAME="info" COLS="40" ROWS="10">
+			</TEXTAREA>
+			<input TYPE="Hidden" NAME="user" VALUE="{USER}">
+		</TD>
+	</TR>
+	<tr><td COLSPAN="2" ALIGN="center"><input TYPE="Submit" NAME="senden" VALUE=" senden "></TD></TR>
+</form>
+</TABLE>
+</body>
+</html>
+</PATTEMPLATE:TMPL>

@@ -1,0 +1,130 @@
+<pattemplate:tmpl NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body bgcolor="#FDD786">
+
+<PATTEMPLATE:TMPL NAME="passwort" VISIBILITY="hidden">
+	<!-- BEGINN Design 'Passwort' -->
+	<table cellspacing="2" cellpadding="2" border="1" bordercolor="#ff0000">
+		<tr>
+			<td colspan="3" height="200">&nbsp;</td>
+		</tr>
+		<form action="../../index.php" method="post" target="_parent">
+		<tr>
+				<td width="150">&nbsp;</td>
+		    <td>Benutzer: </td>
+		    <td><input type="Text" name="benutzer"></td>
+		</tr>
+		<tr>
+				<td></td>
+		    <td>Passwort: </td>
+		    <td><input TYPE="Password" name="passwd"></td>
+		</tr>
+		<tr>
+				<td></td>
+		    <td colspan="2" align="center"><input type="Submit" name="absenden" value="absenden"></td>
+		</tr>
+		<!-- Ende Design 'Passwort' -->
+		</form>
+	</table>	
+</PATTEMPLATE:TMPL>
+
+<PATTEMPLATE:TMPL NAME="person" VISIBILITY="hidden">
+	<!-- Beginn Design 'persoenliche Angaben' -->
+		<table cellspacing="2" cellpadding="2" border="1" bordercolor="#008000">
+		<form action="zugang.php" target="haupt" method="post">
+			<tr>					
+			    <td>Name: </td>
+			    <td><input type="Text" name="name" value="{NAME}"></td>
+			    <td>Vorname: </td>
+			    <td><input type="Text" name="vorname" value="{VORNAME}"></td>
+			</tr>
+			<tr>
+			    <td>Passwort: </td>
+			    <td><input type="Text" name="passwort" value="{PASSWORT}"></td>
+			    <td>Benutzername: </td>
+			    <td><input type="Text" name="benutzer" value="{BENUTZERNAME}" disabled></td>
+			</tr>
+			<tr>
+			    <td>PLZ: </td>
+			    <td><input type="Text" name="plz" value="{PLZ}"></td>
+					<td>Ort: </td>
+					<td><input type="Text" name="ort" value="{ORT}"></td>
+			</tr>
+			<tr>
+					<td>Strasse: </td>
+			    <td><input type="Text" name="strasse" value="{STRASSE}"></td>
+					<td>Haus - Nr.: </td>
+			    <td><input type="Text" name="nr" value="{NR}"></td>
+			</tr>
+			<tr>
+					<td>Telefon: </td>
+			    <td><input type="Text" name="telefon" value="{TELEFON}"></td>
+			    <td>Handy: </td>
+			    <td><input type="Text" name="handy" value="{HANDY}"></td>
+			</tr>
+			<tr>
+			    <td>E-Mail: </td>
+			    <td><input type="Text" name="email" value="{EMAIL}"></td>				
+			    <td>Fax: </td>
+			    <td><input type="Text" name="fax" value="{FAX}"></td>
+			</tr>
+			<tr>
+				<td>Funktion: </td>
+				<td><input type="Text" name="bemerkung" value="{BEMERKUNG}" disabled></td>
+				<td><input type="Hidden" name="user_id" value="{USER_ID}"></td>
+		    <td><input type="Hidden" name="benutzername" value="{BENUTZERNAME}"></td>
+			</tr>
+			<!-- Ende Design 'persoenliche Angaben' -->	
+</PATTEMPLATE:TMPL>
+
+	
+
+
+<PATTEMPLATE:TMPL NAME="info" VISIBILITY="hidden" TYPE="oddeven">
+<PATTEMPLATE:SUB CONDITION="odd">
+	<!-- Beginn Design 'info' -->			
+	<tr>
+		<td bgcolor="#DB9935">{ZEIT}</td>
+		<td bgcolor="#DB9935">von:{ABSENDER}<br>{INFO}</td>
+		<td align="center" bgcolor="#DB9935">
+			l&ouml;schen: <input type="checkbox" name="loeschen[{ID}]" value="{ID}">
+		</td>
+		<td>&nbsp;</td>
+	</tr>
+	</PATTEMPLATE:SUB>
+	<PATTEMPLATE:SUB CONDITION="even">
+	<tr>
+		<td>{ZEIT}</td>
+		<td>von:{ABSENDER}<br>{INFO}</td>
+		<td ALIGN="center">
+			l&ouml;schen: <input type="checkbox" name="loeschen[{ID}]" value="{ID}">
+		</td>
+		<td>&nbsp;</td>
+	</tr>			
+	<!-- Ende Design 'Info' -->
+	</PATTEMPLATE:SUB>
+</PATTEMPLATE:TMPL>
+
+<PATTEMPLATE:TMPL NAME="keine_info" VISIBILITY="hidden">
+	<tr><td COLSPAN="4" ALIGN="center" bgcolor="#DB9935">Keine Informationen vorhanden !</TD></TR>
+</PATTEMPLATE:TMPL>
+
+<PATTEMPLATE:TMPL NAME="verbessern" VISIBILITY="hidden">
+	<tr>
+		<td colspan="4" align="center"><input type="Submit" value=" &auml;ndern " name="aendern"></td>
+	</tr>
+	<input TYPE="Hidden" NAME="person_zugang" VALUE="{USER_ID}">			
+	</form>
+	</table>		
+</PATTEMPLATE:TMPL>
+
+
+
+</body>
+</html>
+</PATTEMPLATE:TMPL>
+
