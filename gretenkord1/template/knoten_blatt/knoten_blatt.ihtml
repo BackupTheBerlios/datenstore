@@ -5,17 +5,19 @@
 	<title>Unbenannt</title>
 </head>
 <body>
+<!-- Beginn Design Knoten -->
 <PATTEMPLATE:TMPL NAME="knoten" VISIBILITY="hidden">
 <h2 ALIGN="center" STYLE="color:blue">Knoten der Homepage !</H2>
-<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" BORDERCOLOR="#0000FF" WIDTH="500" ALIGN="center">
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" BORDERCOLOR="#0000FF" WIDTH="500">
 <TR>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenname: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenverzeichnis: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Seite / Anwendung: </TD>
+		<TD ALIGN="center" BGCOLOR="#FDBF4D"> aktiv / inaktiv: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten &auml;ndern: </TD>
     <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten l&ouml;schen: </TD>
 		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Knoten-<br>information: </TD>
-		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt-<br>zuordnung &auml;ndern: </TD>
+		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt-<br>zuordnung &auml;ndern: </TD>		
 </TR>
 <PATTEMPLATE:TMPL NAME="knoten_liste" TYPE="oddeven" VISIBILITY="hidden">
 <PATTEMPLATE:SUB CONDITION="odd">
@@ -33,6 +35,7 @@
 				{KNOTEN_PFAD}
 			</SELECT>
 		</TD>
+		<TD BGCOLOR="#FDE4B3"><input type="checkbox" name="aktiv_knoten" {KNOTEN_AKTIV}></td>	
     <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
     <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
 		<TD BGCOLOR="#FDE4B3"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{KNOTEN_INFO}" BORDER="0"></TD>
@@ -55,6 +58,7 @@
 				{KNOTEN_PFAD}
 			</SELECT>
 		</TD>
+		<TD BGCOLOR="#F8D789"><input type="checkbox" name="aktiv_knoten" {KNOTEN_AKTIV}></TD>
     <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
     <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
 		<TD BGCOLOR="#F8D789"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{KNOTEN_INFO}" BORDER="0"></TD>
@@ -77,7 +81,7 @@
 				<option VALUE="index.php">index.php</option>
 			</SELECT>
 		</TD>
-		<TD BGCOLOR="#FDBF4D" COLSPAN="3">
+		<TD BGCOLOR="#FDBF4D" COLSPAN="4">
 			<textarea NAME="knoten_info" COLS="25" ROWS="5">
 			</TEXTAREA>
 		</TD>
@@ -87,6 +91,102 @@
 </TR>
 </TABLE>
 </PATTEMPLATE:TMPL>
+<!-- Ende Design Knoten -->
+
+<!-- Beginn Design Blatt -->
+<PATTEMPLATE:TMPL NAME="blatt" VISIBILITY="hidden">
+<h2 ALIGN="center" STYLE="color:blue">{KNOTENNAME} / Unterbl&auml;tter</H2>
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" BORDERCOLOR="#FF0000">
+<TR>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Blattname: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Blattverzeichnis: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Seite/<br>Anwendung: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> aktiv/<br>inaktiv: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt<br>&auml;ndern: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt<br>l&ouml;schen: </TD>
+		<TD ALIGN="center" BGCOLOR="#FDBF4D"> Blatt-<br>information: </TD>
+</TR>
+<PATTEMPLATE:TMPL NAME="blatt_liste" TYPE="oddeven" VISIBILITY="hidden">
+<PATTEMPLATE:SUB CONDITION="odd">
+<TR>
+	<form METHOD="post" ACTION="knoten_blatt.php">
+		<input TYPE="Hidden" NAME="blatt" VALUE="blatt">
+		<input TYPE="Hidden" NAME="blatt_id" VALUE="{ID}">
+		<input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
+		<input TYPE="Hidden" NAME="knoten_name" VALUE="{KNOTENNAME}">
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="blatt_name" VALUE="{BLATT_NAME}"></TD>
+    <TD BGCOLOR="#FDE4B3">
+			<select NAME="blatt_verzeichnis">
+				{BLATT_VERZEICHNIS}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDE4B3">
+			<select NAME="blatt_pfad">				
+				{BLATT_PFAD}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDE4B3"><input type="checkbox" name="aktiv_blatt" {BLATT_AKTIV}></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="aendern_blatt" VALUE=" &auml;ndern "></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="loeschen_blatt" VALUE=" l&ouml;schen "></TD>
+		<td BGCOLOR="#FDE4B3"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{BLATT_INFO}" BORDER="0"></TD>
+	</FORM>
+</TR>
+</PATTEMPLATE:SUB>
+<PATTEMPLATE:SUB CONDITION="even">
+<TR>
+	<form METHOD="post" ACTION="knoten_blatt.php">
+		<input TYPE="Hidden" NAME="blatt" VALUE="blatt">
+		<input TYPE="Hidden" NAME="blatt_id" VALUE="{ID}">
+		<input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
+		<input TYPE="Hidden" NAME="knoten_name" VALUE="{KNOTENNAME}">
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="blatt_name" VALUE="{BLATT_NAME}"></TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="blatt_verzeichnis">
+				{BLATT_VERZEICHNIS}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="blatt_pfad">				
+				{BLATT_PFAD}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDBF4D"><input type="checkbox" name="aktiv_blatt" {BLATT_AKTIV}></TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Submit" NAME="aendern_blatt" VALUE=" &auml;ndern "></TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Submit" NAME="loeschen_blatt" VALUE=" l&ouml;schen "></TD>
+		<td BGCOLOR="#FDBF4D"><IMG SRC="../../web-site/knoten_blatt/leer.gif" WIDTH="50" HEIGHT="20" ALT="{BLATT_INFO}" BORDER="0"></TD>
+	</FORM>
+</TR>
+</PATTEMPLATE:SUB>
+</PATTEMPLATE:TMPL>
+<TR>
+<form ACTION="knoten_blatt.php" METHOD="post">
+		<input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
+		<input TYPE="Hidden" NAME="blatt" VALUE="blatt">
+		<input TYPE="Hidden" NAME="knoten_name" VALUE="{KNOTENNAME}">
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="blatt_name" VALUE="{BLATT_NAME}"></TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="blatt_verzeichnis">
+				{BLATT_VERZEICHNIS1}
+			</SELECT>
+		</TD>
+    <TD BGCOLOR="#FDBF4D">
+			<select NAME="blatt_pfad">
+				<option VALUE="index.html">index.html</option>
+				<option VALUE="index.php">index.php</option>
+			</SELECT>
+		</TD>
+		<TD BGCOLOR="#FDBF4D" COLSPAN="3">
+			<textarea NAME="blatt_info" COLS="25" ROWS="5">
+			</TEXTAREA>
+		</TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Submit" NAME="hinzufuegen_blatt" VALUE=" hinzuf&uuml;gen "></TD>
+    
+</FORM>
+</TR>
+</TABLE>
+</PATTEMPLATE:TMPL>
+<!-- Ende Design Blatt -->
+
 
 </body>
 </html>

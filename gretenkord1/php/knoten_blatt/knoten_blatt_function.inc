@@ -16,7 +16,6 @@ function verzeichnis($kunde){
 			$i++;
 		}
 		$eintrag=readdir($pfad);
-
 	}
 	closedir($pfad);
 	clearstatcache();
@@ -64,7 +63,7 @@ function seite_pulldown($seite){
 }
 
 /**
-* Umwandlung der Verzeichnisse fuer hinzufuegen_knoten
+* Umwandlung der Verzeichnisse fuer hinzufuegen Knoten und Blaetter
 */
 function verzeichnis_simple($verzeichnisse){
 	$anzahl=count($verzeichnisse);
@@ -72,5 +71,47 @@ function verzeichnis_simple($verzeichnisse){
 		$inhalt .="<option value='$verzeichnisse[$i]'>".$verzeichnisse[$i]."</option>";
 	}
 	return $inhalt;
+}
+
+/**
+* loeschen der Blaetter die
+* zu einem Knoten gehoeren
+*/
+function blatt_loeschen($db,$blatt_array){
+	$anzahl=count($blatt_array);
+	for($i=0;$i<$anzahl;$i++){
+		$query="delete from blatt1 where id=$blatt_array[$i]";
+		$db->query($query);
+	}
+	return;
+}
+
+/**
+* loeschen der Eintragungen
+*	welche zu dem Knoten gehoeren
+* in der Brueckentabelle 'knoten1_blatt1'
+*/
+function knoten1_blatt1_loeschen($db,$id){
+	$query="delete from knoten1_blatt1 where knoten_id=$id";
+	$db->query($query);
+	return;
+}
+
+/**
+* welche Blaetter gehoeren zum Knoten
+* Ermittlung der Eigenschaften der Blaetter
+*/
+function welche_blaetter($db,$blatt_array){
+	$anzahl=count($blatt_array);
+	for($i=0;$i<$anzahl;$i++){
+		$query="select * from blatt1 where id='$blatt_array[$i]'";
+		$zeile=$db->query($query);
+		while($wert=$zeile->fetch_array(patDBC_TYPEASSOC)){
+			foreach($wert as $name => $inhalt){
+				$ausgabe[$name][$i]=$inhalt;
+			}
+		}
+	}
+	return $ausgabe;
 }
 ?>

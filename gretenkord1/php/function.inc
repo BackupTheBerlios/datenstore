@@ -47,8 +47,8 @@ echo "Anzahl der Teilarrays: ".count($array)."<hr>";
 * dazu wird das '$abfrage - Objekt' uebergeben
 * und in ein array abgelegt
 */
-function array_bildung($abfrage){ // Bildung eines Array aus einer Datenbankabfrage
-$i=0;
+function array_bildung($abfrage){ // Bildung eines Array 2-dimensional aus einer Datenbankabfrage
+	$i=0;
 	while($wert=$abfrage->fetch_array(patDBC_TYPEASSOC)){
 		foreach($wert as $name => $inhalt){
 			$ausgabe[$name][$i]=$inhalt;
@@ -57,6 +57,22 @@ $i=0;
 	}
 	return $ausgabe;
 }
+
+/**
+* Bildung eines 1-dimensionalen nummerischen Array
+* aus einer Datenbankabfrage
+*/
+function array_bildung_simpel($abfrage){
+	$i=0;
+	while($wert=$abfrage->fetch_array(patDBC_TYPENUM)){
+		foreach($wert as $inhalt){
+			$ausgabe[$i]=$inhalt;
+			$i++;
+		}
+	}
+	return $ausgabe;
+}
+
 
 /**
 * Verbesserung eines Textblockes
