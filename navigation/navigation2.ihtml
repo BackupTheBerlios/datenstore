@@ -8,17 +8,17 @@
 <h2>Navigationsleiste</H2>
 
 <TABLE WIDTH="100" CELLSPACING="0" CELLPADDING="0" BORDER="1" BORDERCOLOR="#008000">
-<PATTEMPLATE:TMPL NAME="passiv" VISIBILITY="hidden">
+<PATTEMPLATE:TMPL NAME="block1">
 	<TR>
 	    <TD>&nbsp;</TD>
-	    <TD>&nbsp;<A HREF="navigation1.php?knoten={KNOTEN_ID}&seite={KNOTEN_PFAD}">{KNOTEN_NAME}</a></TD>
+	    <TD>&nbsp;<A HREF="navigation1.php?knoten={ID}&seite={PFAD}">{NAME}</a></TD>
 	</TR>
 </PATTEMPLATE:TMPL>
 
-<PATTEMPLATE:TMPL NAME="aktiv" VISIBILITY="hidden">
+<PATTEMPLATE:TMPL NAME="block2">
 	<TR>
 	    <TD BGCOLOR="#FF0000">&nbsp;</TD>
-	    <TD>&nbsp;<A HREF="navigation1.php?knoten={KNOTEN_ID}&seite={KNOTEN_PFAD}">{KNOTEN_NAME}</a></TD>
+	    <TD>&nbsp;<A HREF="navigation1.php?knoten={ID1}&seite={PFAD1}">{NAME1}</a></TD>
 	</TR>
 </PATTEMPLATE:TMPL>
 </TABLE>

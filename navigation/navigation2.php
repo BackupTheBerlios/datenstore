@@ -1,18 +1,18 @@
 <?
 /************ Werte der Bloecke ************/
-$array_passiv[knoten_id][0]="1";
-$array_passiv[knoten_id][1]="2";
-$array_passiv[knoten_id][2]="3";
-$array_passiv[knoten_pfad][0]="aaaaaaaaa";
-$array_passiv[knoten_pfad][1]="bbbbbbbbb";
-$array_passiv[knoten_pfad][2]="ccccccccc";
-$array_passiv[knoten_name][0]="Knoten1";
-$array_passiv[knoten_name][1]="Knoten2";
-$array_passiv[knoten_name][2]="Knoten3";
+$passiv[ID][0]="1";
+$passiv[ID][1]="2";
+$passiv[ID][2]="3";
+$passiv[PFAD][0]="aaaaaaaaa";
+$passiv[PFAD][1]="bbbbbbbbb";
+$passiv[PFAD][2]="ccccccccc";
+$passiv[NAME][0]="Knoten1";
+$passiv[NAME][1]="Knoten2";
+$passiv[NAME][2]="Knoten3";
 
-$array_aktiv[knoten_id][3]="4";
-$array_aktiv[knoten_pfad][3]="dddddddddd";
-$array_aktiv[knoten_name][3]="Knoten4";
+$aktiv[ID][3]="4";
+$aktiv[PFAD][3]="dddddddddd";
+$aktiv[NAME][3]="Knoten4";
 
 /************* globale Includedateien ***********************/
 include_once('patTemplate.inc');
@@ -24,12 +24,9 @@ $tmpl = new patTemplate();
 $tmpl->setBasedir('c:/php/navigation');
 $tmpl->readTemplatesFromFile('navigation2.ihtml');
 
+$tmpl->addVars('block1',$passiv);
 
-$tmpl->setAttribute('passiv','visibility','visibility');
-$tmpl->addVars('passiv',$array_passiv);
-
-$tmpl->setAttribute('aktiv','visibility','visibility');
-$tmpl->addVars('aktiv',$array_aktiv);
+$tmpl->addVars('block2',$aktiv);
 
 $tmpl->dump();
 $tmpl->displayParsedTemplate();

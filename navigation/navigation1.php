@@ -15,8 +15,8 @@ class tree{
 	var $knoten;  // Knoten der aktiv ist
 	var $blatt;  // Blatt das aktiv ist
 	
-	var $knoten_schnitt; // an welcher Stelle muss das Knoten-Array geschnitten werden
-	var $blatt_schnitt=false; // an welcher Stelle muss das Blatt-Array geschnitten werden
+	var $knoten_schnitt=-1; // an welcher Stelle muss das Knoten-Array geschnitten werden
+	var $blatt_schnitt=-1; // an welcher Stelle muss das Blatt-Array geschnitten werden
 	
 	/*********************** Rueckgabewerte ************************/
 	var $knoten_array_oben_passiv; // Knoten oberhalb passiv
@@ -86,6 +86,7 @@ class tree{
 			$i++;
 		}
 	//$this->kontrolle($arr);
+	mysql_free_result($abfrage1);
 	$this->blatt_zerlegung();
 	}
 	
@@ -94,29 +95,36 @@ class tree{
 	*
 	*/
 	function blatt_zerlegung(){
-		if($this->blatt_schnitt){
+		if($this->blatt_schnitt>=0){
 			$anzahl=count($this->blatt_array[blatt_id]);
+			$j=0;
+			$k=0;
+			$l=0;
+			
 			for($i=0;$i<$anzahl;$i++){
-				if($i<$this->blatt_schnitt){
-					$this->blatt_array_oben[blatt_id][$i]=$this->blatt_array[blatt_id][$i];
-					$this->blatt_array_oben[blatt_name][$i]=$this->blatt_array[blatt_name][$i];
-					$this->blatt_array_oben[knoten_id][$i]=$this->blatt_array[knoten_id][$i];
-					$this->blatt_array_oben[blatt_pfad][$i]=$this->blatt_array[blatt_pfad][$i];
+				if($i<$this->blatt_schnitt){  // passive Blaetter
+					$this->blatt_array_oben[blatt_id][$j]=$this->blatt_array[blatt_id][$i];
+					$this->blatt_array_oben[blatt_name][$j]=$this->blatt_array[blatt_name][$i];
+					$this->blatt_array_oben[knoten_id][$j]=$this->blatt_array[knoten_id][$i];
+					$this->blatt_array_oben[blatt_pfad][$j]=$this->blatt_array[blatt_pfad][$i];
 					$this->blatt_block_oben="visibility";
+					$j++;
 				}
-				if($i==$this->blatt_schnitt){
-					$this->blatt_array_mitte[blatt_id][$i]=$this->blatt_array[blatt_id][$i];
-					$this->blatt_array_mitte[blatt_name][$i]=$this->blatt_array[blatt_name][$i];
-					$this->blatt_array_mitte[knoten_id][$i]=$this->blatt_array[knoten_id][$i];
-					$this->blatt_array_mitte[blatt_pfad][$i]=$this->blatt_array[blatt_pfad][$i];
+				if($i==$this->blatt_schnitt){  // aktives Blatt
+					$this->blatt_array_mitte[blatt_id][$k]=$this->blatt_array[blatt_id][$i];
+					$this->blatt_array_mitte[blatt_name][$k]=$this->blatt_array[blatt_name][$i];
+					$this->blatt_array_mitte[knoten_id][$k]=$this->blatt_array[knoten_id][$i];
+					$this->blatt_array_mitte[blatt_pfad][$k]=$this->blatt_array[blatt_pfad][$i];
 					$this->blatt_block_mitte="visibility";
+					$k++;
 				}
-				if($i>$this->blatt_schnitt){
-					$this->blatt_array_unten[blatt_id][$i]=$this->blatt_array[blatt_id][$i];
-					$this->blatt_array_unten[blatt_name][$i]=$this->blatt_array[blatt_name][$i];
-					$this->blatt_array_unten[knoten_id][$i]=$this->blatt_array[knoten_id][$i];
-					$this->blatt_array_unten[blatt_pfad][$i]=$this->blatt_array[blatt_pfad][$i];
+				if($i>$this->blatt_schnitt){  // passive Blaetter
+					$this->blatt_array_unten[blatt_id][$l]=$this->blatt_array[blatt_id][$i];
+					$this->blatt_array_unten[blatt_name][$l]=$this->blatt_array[blatt_name][$i];
+					$this->blatt_array_unten[knoten_id][$l]=$this->blatt_array[knoten_id][$i];
+					$this->blatt_array_unten[blatt_pfad][$l]=$this->blatt_array[blatt_pfad][$i];
 					$this->blatt_block_unten="visibility";
+					$l++;
 				}
 			}
 		}
@@ -132,7 +140,7 @@ class tree{
 	function knoten_zerlegung(){
 		foreach($this->knoten_array as $name => $inhalt){
 			if($this->knoten==false and $this->blatt==false){
-				$this->knoten_array_oben_passiv=$this->knoten_array;
+				$this->knoten_array_oben_passiv=$this->knoten_array; 
 				$this->knoten_block_oben_passiv="visibility";
 			}
 			if($this->knoten==true and $this->blatt==false){
@@ -209,8 +217,6 @@ include_once('patTemplate.inc');
 
 
 /************* Ausgangswerte **************/
-//$knoten=3;
-//$blatt=8;
 
 $tmpl = new patTemplate();
 $tmpl->setBasedir('c:/php/navigation');
@@ -238,17 +244,26 @@ $tmpl->addVars('blatt_unten',$baum->blatt_array_unten);
 $tmpl->setAttribute('knoten_unten_passiv','visibility',$baum->knoten_block_unten_passiv);
 $tmpl->addVars('knoten_unten_passiv',$baum->knoten_array_unten_passiv);
 
-$tmpl->dump();
+//$tmpl->dump();
 $tmpl->displayParsedTemplate();
 
-//echo "Sichtbarkeit: ".$baum->blatt_block_unten;
-//kontrolle($baum->blatt_array_unten);
+/************** Kontrolle ****************/
+// echo "Test: ".count($baum->blatt_array_oben);
+// kontrolle($baum->blatt_array_oben);
 
+// mehrdimensionales Array
 function kontrolle($test){
 	foreach($test as $name => $inhalt){
 		foreach($inhalt as $name1 => $inhalt1){
 			echo "Teilarray: $name mit Name: $name1 Inhalt: $inhalt1<br>";
 		}
+	}
+}
+
+// eindimensionales Array
+function kontrolle1($test){
+	foreach($test as $name => $inhalt){
+			echo "Name: $name mit Inhalt: $inhalt<br>";
 	}
 }
 ?>
