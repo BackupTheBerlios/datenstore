@@ -7,7 +7,7 @@
 <body BGCOLOR="#FCD685">
 <h2 ALIGN="center" STYLE="color:blue">{INFO}</H2>
 <TABLE CELLSPACING="2" CELLPADDING="2" BORDER="0">
-<form METHOD="get" ACTION="formular_eingeben.php" ENCTYPE="multipart/form-data">
+<form METHOD="post" ACTION="formular_eingeben.php" ENCTYPE="multipart/form-data">
 <input TYPE="Hidden" NAME="user_id" VALUE="{USER_ID}">
 <input TYPE="Hidden" NAME="formular" VALUE="{FORMULAR}">
 <input TYPE="Hidden" NAME="name_formular" VALUE="{NAME_FORMULAR}">
@@ -35,6 +35,11 @@
     <TD COLSPAN="2" ALIGN="center"><input TYPE="Submit" NAME="speichern" VALUE=" speichern "></TD>    
 </TR>
 </FORM>
+<PATTEMPLATE:TMPL NAME="fehler" VISIBILITY="hidden">
+<tr>
+	<td COLSPAN="2" STYLE="color:red">{FEHLER}</TD>
+</TR>
+</PATTEMPLATE:TMPL>
 </TABLE>
 
 </body>
