@@ -31,7 +31,7 @@
 	<TR>
 			<td>&nbsp;</TD>
 	    <TD>&nbsp;</TD>
-	    <TD>&nbsp;&nbsp;<A HREF="navigation.php?knoten={KNOTEN_ID}&blatt={BLATT_ID}&seite={BLATT_PFAD}">{BLATT_NAME}{4}</a></TD>
+	    <TD>&nbsp;&nbsp;<A HREF="navigation.php?knoten={KNOTEN_ID}&blatt={BLATT_ID}&seite={BLATT_PFAD}">{BLATT_NAME}</a></TD>
 	</TR>
 </PATTEMPLATE:TMPL>
 

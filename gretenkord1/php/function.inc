@@ -2,16 +2,32 @@
 /*********** zentrale Funktionsdatei **************/
 
 /**
-* Ueberpruefung eines gebildeten Array's auf Inhalt
+* Ueberpruefung eines gebildeten Array's auf Inhalt 1 - dimensional
 *
 */
-function kontrolle_array($array){  // allgemeine Kontrolle eines Array
-echo "Arraykontrolle !<br>";
-echo "Anzahl der Datens&auml;tze: ".count($array)."<br>";
+function kontrolle_array_1($array){  // allgemeine Kontrolle eines Array
+echo "Arraykontrolle 1 - dimensional !<hr>";
+echo "Anzahl der Datens&auml;tze: ".count($array)."<hr>";
 	foreach($array as $name => $inhalt){
 		echo "Name: $name Inhalt: &nbsp;&nbsp; $inhalt <br>";
 	}
 }
+
+/**
+* Ueberpruefung eines gebildeten Array's auf Inhalt 2 - dimensional
+*
+*/
+function kontrolle_array_2($array){  // allgemeine Kontrolle eines Array
+echo "Arraykontrolle 2 - dimensional !<hr>";
+echo "Anzahl der Teilarrays: ".count($array)."<hr>";
+	foreach($array as $name => $inhalt){
+		foreach($inhalt as $name1 => $inhalt1){
+			echo "$name $name1 $inhalt1<br>";
+		}
+		echo "<hr>";
+	}
+}
+
 
 /**
 * Bildung eines Array aus einer Datenbankabfrage

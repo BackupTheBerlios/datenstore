@@ -1,0 +1,58 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body>
+<PATTEMPLATE:TMPL NAME="knoten" VISIBILITY="hidden">
+<h2 ALIGN="center" STYLE="color:blue">Knoten der Homepage !</H2>
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="1" BORDERCOLOR="#0000FF" WIDTH="500" ALIGN="center">
+<TR>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenname: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Knotenverzeichnis: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D"> Seite / Anwendung: </TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D">&nbsp;</TD>
+    <TD ALIGN="center" BGCOLOR="#FDBF4D">&nbsp;</TD>
+</TR>
+<PATTEMPLATE:TMPL NAME="knoten_liste" TYPE="oddeven" VISIBILITY="hidden">
+<PATTEMPLATE:SUB CONDITION="odd">
+<TR>
+<form ACTION="knoten_blatt.php" METHOD="post">
+<input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_verzeichnis" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
+    <TD BGCOLOR="#FDE4B3"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
+</FORM>
+</TR>
+</PATTEMPLATE:SUB>
+<PATTEMPLATE:SUB CONDITION="even">
+<TR>
+<form ACTION="knoten_blatt.php" METHOD="post">
+<input TYPE="Hidden" NAME="knoten_id" VALUE="{KNOTEN_ID}">
+    <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
+    <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_verzeichnis" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
+    <TD BGCOLOR="#F8D789"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="aendern_knoten" VALUE=" &auml;ndern "></TD>
+    <TD BGCOLOR="#F8D789"><input TYPE="Submit" NAME="loeschen_knoten" VALUE=" l&ouml;schen "></TD>
+</FORM>
+</TR>
+</PATTEMPLATE:SUB>
+</PATTEMPLATE:TMPL>
+<TR>
+<form ACTION="knoten_blatt.php" METHOD="post">
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_name" VALUE="{KNOTEN_NAME}"></TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_id" VALUE="{KNOTEN_VERZEICHNIS}"></TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Text" NAME="knoten_pfad" VALUE="{KNOTEN_PFAD}"></TD>
+    <TD BGCOLOR="#FDBF4D"><input TYPE="Submit" NAME="hinzufuegen_knoten" VALUE=" hinzuf&uuml;gen "></TD>
+    <TD BGCOLOR="#FDBF4D">&nbsp;</TD>
+</FORM>
+</TR>
+</TABLE>
+</PATTEMPLATE:TMPL>
+
+</body>
+</html>
+</PATTEMPLATE:TMPL>
