@@ -1,0 +1,115 @@
+<PATTEMPLATE:TMPL NAME="gesamt">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title>Unbenannt</title>
+</head>
+<body BGCOLOR="#A7EFFC">
+<TABLE CELLSPACING="2" CELLPADDING="2" BORDER="0" BGCOLOR="#FEA7C6">
+<FORM ACTION="archiv_kontrolle.php" METHOD="post">
+<TR>
+    <TD>Suche nach Schlagwort: </TD>
+		<td><input TYPE="Text" NAME="schlagwort" SIZE="60"></TD>
+</TR>
+<TR>
+    <TD>Suche nach Datum: </TD>
+		<td>entspricht Datum: <input TYPE="Radio" CHECKED NAME="datum" VALUE="gleich"> gr&ouml;&szlig;er Datum: <input TYPE="Radio" NAME="datum" VALUE="groesser"> kleiner Datum: <input TYPE="Radio" NAME="datum" VALUE="kleiner"></TD>
+</TR>
+<TR>
+   <TD>
+		&nbsp;
+	</TD>
+	<td>
+	Tag:&nbsp; <select NAME="tag">
+				<option VALUE="1">1</option>
+				<option VALUE="2">2</option>
+				<option VALUE="3">3</option>
+				<option VALUE="4">4</option>
+				<option VALUE="5">5</option>
+				<option VALUE="6">6</option>
+				<option VALUE="7">7</option>
+				<option VALUE="8">8</option>
+				<option VALUE="9">9</option>
+				<option VALUE="10">10</option>
+				<option VALUE="11">11</option>
+				<option VALUE="12">12</option>
+				<option VALUE="13">13</option>
+				<option VALUE="14">14</option>
+				<option VALUE="15">15</option>
+				<option VALUE="16">16</option>
+				<option VALUE="17">17</option>
+				<option VALUE="18">18</option>
+				<option VALUE="19">19</option>
+				<option VALUE="20">20</option>
+				<option VALUE="21">21</option>
+				<option VALUE="22">22</option>
+				<option VALUE="23">23</option>
+				<option VALUE="24">24</option>
+				<option VALUE="25">25</option>
+				<option VALUE="26">26</option>
+				<option VALUE="27">27</option>
+				<option VALUE="28">28</option>
+				<option VALUE="29">29</option>
+				<option VALUE="30">30</option>
+				<option VALUE="11">31</option>
+			</SELECT>
+			&nbsp;Monat:&nbsp;
+			<select>
+				<option VALUE="1">1</option>
+				<option VALUE="2">2</option>
+				<option VALUE="3">3</option>
+				<option VALUE="4">4</option>
+				<option VALUE="5">5</option>
+				<option VALUE="6">6</option>
+				<option VALUE="7">7</option>
+				<option VALUE="8">8</option>
+				<option VALUE="9">9</option>
+				<option VALUE="10">10</option>
+				<option VALUE="11">11</option>
+				<option VALUE="12">12</option>
+			</SELECT>
+			&nbsp;Jahr:&nbsp;
+			<select NAME="jahr">
+				<option VALUE="2002">2002</option>
+				<option VALUE="2003">2003</option>
+				<option VALUE="2004">2004</option>
+			</SELECT>
+	</TD>
+</TR>
+<tr>
+	<td>Suche nach User: </TD>
+	<td><select NAME="user">{USER}</SELECT></TD>
+</TR>
+<tr><td ALIGN="center" COLSPAN="2"><input TYPE="Submit" NAME="suchen" VALUE="&nbsp;suchen&nbsp;"></TD></TR>
+</FORM>
+</TABLE>
+
+<PATTEMPLATE:TMPL NAME="liste" VISIBILITY="hidden">
+<table BORDERCOLOR="#FF0000" BORDER="1" BGCOLOR="#F9D58A">
+	<tr BGCOLOR=>
+		<td> Datum: </TD>	
+		<td> &Uuml;berschrift: </TD>
+		<td> Status: </TD>
+	</TR>
+<PATTEMPLATE:TMPL NAME="inhalt" TYPE="oddeven">
+<PATTEMPLATE:SUB CONDITION="odd">
+	<tr bgcolor="#FFFFFF">
+		<td>{DATUM}</TD>
+		<td>{UEBERSCHRIFT}</TD>
+		<td>{USER_ID_KONTROLLE}</TD>
+	</TR>
+</PATTEMPLATE:SUB>
+<PATTEMPLATE:SUB CONDITION="even">
+	<tr BGCOLOR="#FCF583">
+		<td>{DATUM}</TD>
+		<td>{UEBERSCHRIFT}</TD>
+		<td>{USER_ID_KONTROLLE}</TD>
+	</TR>
+</PATTEMPLATE:SUB>
+</PATTEMPLATE:TMPL>
+</TABLE>
+</PATTEMPLATE:TMPL>
+{INFO}
+</body>
+</html>
+</PATTEMPLATE:TMPL>
