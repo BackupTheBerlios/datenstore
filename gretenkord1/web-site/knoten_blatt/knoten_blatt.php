@@ -65,8 +65,8 @@ if(!$HTTP_POST_VARS[aendern_knoten] and !$HTTP_POST_VARS[loeschen_knoten]
 	$verzeichnis=verzeichnis(KUNDE);  // Abfrage der Verzeichnisse
 	$verzeichnis1=verzeichnis_simple($verzeichnis);
 	$tmpl->addVar('knoten','KNOTEN_VERZEICHNIS1',$verzeichnis1);
+	$antwort1[knoten_pfad]=seite_pulldown($antwort1[knoten_pfad]);
 	$antwort1[knoten_verzeichnis]=knoten_pulldown($verzeichnis,$antwort1[knoten_verzeichnis]);
-	$antwort1[knoten_pfad]=seite_pulldown($antwort1[knoten_pfad]);  // Namen der Hauptblaetter werden abgeglichen
 	$tmpl->addVars('knoten_liste',$antwort1);
 }
 

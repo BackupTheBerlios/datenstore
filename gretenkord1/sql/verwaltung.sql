@@ -4,7 +4,7 @@
 # http://www.phpmyadmin.net/ (download page)
 #
 # Host: localhost
-# Erstellungszeit: 07. Oktober 2002 um 14:49
+# Erstellungszeit: 10. Oktober 2002 um 14:09
 # Server Version: 3.23.51
 # PHP-Version: 4.2.2
 # Datenbank: `verwaltung`
@@ -97,6 +97,8 @@ CREATE TABLE blatt1 (
   blatt_name varchar(75) NOT NULL default '',
   blatt_pfad varchar(150) NOT NULL default '',
   blatt_verzeichnis varchar(50) default NULL,
+  blatt_aktiv enum('checked','') NOT NULL default 'checked',
+  blatt_info text,
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='beinhaltet den Namen des Blatt und dessen Pfad';
 
@@ -104,15 +106,14 @@ CREATE TABLE blatt1 (
 # Daten für Tabelle `blatt1`
 #
 
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (1, 'Blatt11', 'blatt11.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (2, 'Blatt12', 'blatt12.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (3, 'Blatt13', 'blatt13.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (4, 'Blatt21', 'blatt21.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (5, 'Blatt22', 'blatt22.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (6, 'Blatt23', 'blatt23.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (7, 'Blatt31', 'blatt31.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (8, 'Blatt32', 'blatt32.html', NULL);
-INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis) VALUES (9, 'Blatt33', 'blatt33.html', NULL);
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (1, 'Knoten1_Blatt1', 'index.html', 'rezepte', 'checked', 'Knoten1\r\nBlatt1			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (2, 'Knoten1_Blatt2', 'index.php', 'email', 'checked', 'Knoten1\r\nBlatt2			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (3, 'Knoten2_Blatt2', 'index.php', 'email', 'checked', 'Knoten2\r\nBlatt2			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (4, 'Knoten2_Blatt3', 'index.php', 'email', 'checked', 'Knoten2\r\nBlatt3			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (5, 'Knoten1_Blatt3', 'index.html', 'email', 'checked', 'Knoten 1\r\nBlatt 3		');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (6, 'Knoten1_Blatt4', 'index.php', 'gaestebuch', 'checked', 'Knoten 1\r\nBlatt 4			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (7, 'Knoten4_Blatt1', 'index.html', 'newsletter', 'checked', 'Knoten4\r\nBlatt 2			');
+INSERT INTO blatt1 (id, blatt_name, blatt_pfad, blatt_verzeichnis, blatt_aktiv, blatt_info) VALUES (8, 'Knoten4_Blatt2', 'index.php', 'newsletter', 'checked', 'Knoten4\r\nBlatt2			');
 # --------------------------------------------------------
 
 #
@@ -166,6 +167,7 @@ CREATE TABLE knoten1 (
   knoten_pfad varchar(75) NOT NULL default '',
   knoten_verzeichnis varchar(50) default NULL,
   knoten_info varchar(100) default NULL,
+  knoten_aktiv enum('checked','') NOT NULL default 'checked',
   PRIMARY KEY  (knoten_id)
 ) TYPE=MyISAM COMMENT='beinhaltet die einzelnen Gruppen';
 
@@ -173,10 +175,12 @@ CREATE TABLE knoten1 (
 # Daten für Tabelle `knoten1`
 #
 
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (12, 'Testknoten', 'index.php', 'newsletter', 'aaaaaaaa aaaaaa aaaaaaaa aaaaaaaa aaaaa\r\nbbbbbbbbbb bbbbbbb bbbbbbbbb bbbbbbb\r\nccccccc cccccc		');
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (3, 'Knoten3', 'index.html', 'ccc', NULL);
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (4, 'Knoten4', 'index.php', NULL, NULL);
-INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info) VALUES (5, 'Knoten5', 'index.php', 'rezepte', NULL);
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (15, 'Knoten 1', 'index.html', 'newsletter', 'Knoten 1			', 'checked');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (16, 'Knoten 2', 'index.html', 'email', 'Knoten 2			', 'checked');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (17, 'Knoten 3', 'index.php', 'rezepte', 'Knoten 3		', 'checked');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (18, 'Knoten 4', 'index.php', 'gaestebuch', 'Knoten 4		', 'checked');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (19, 'Knoten 5', 'index.html', 'newsletter', 'Knoten 5		', 'checked');
+INSERT INTO knoten1 (knoten_id, knoten_name, knoten_pfad, knoten_verzeichnis, knoten_info, knoten_aktiv) VALUES (20, 'Knoten 6', 'index.php', 'email', 'Knoten 6			', 'checked');
 # --------------------------------------------------------
 
 #
@@ -194,15 +198,14 @@ CREATE TABLE knoten1_blatt1 (
 # Daten für Tabelle `knoten1_blatt1`
 #
 
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (1, 1, 1);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (2, 1, 2);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (3, 1, 3);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (4, 2, 4);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (5, 2, 5);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (6, 2, 6);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (7, 3, 7);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (8, 3, 8);
-INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (9, 3, 9);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (1, 15, 1);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (2, 15, 2);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (3, 16, 3);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (4, 16, 4);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (5, 15, 5);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (6, 15, 6);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (7, 18, 7);
+INSERT INTO knoten1_blatt1 (id, knoten_id, blatt_id) VALUES (8, 18, 8);
 # --------------------------------------------------------
 
 #
@@ -275,17 +278,17 @@ CREATE TABLE rechte_user (
 # Daten für Tabelle `rechte_user`
 #
 
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (58, 1, 9);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (57, 1, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (56, 1, 4);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (70, 1, 10);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (69, 1, 9);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (68, 1, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (4, 2, 1);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (55, 1, 2);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (67, 1, 4);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (51, 34, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (54, 1, 1);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (66, 1, 2);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (52, 36, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (50, 35, 8);
 INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (53, 37, 8);
-INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (59, 1, 10);
+INSERT INTO rechte_user (id, user_id, rechte_id) VALUES (65, 1, 1);
 # --------------------------------------------------------
 
 #
@@ -309,11 +312,33 @@ CREATE TABLE rezepte (
   empfehlung enum('Nein','Ja') NOT NULL default 'Nein',
   rezept_ueberprueft enum('Nein','Ja') NOT NULL default 'Nein',
   rezept_note tinyint(1) default NULL,
+  dauer_zubereitung int(3) default NULL,
+  aufwand_zubereitung enum('simpel','normal','extrem') NOT NULL default 'simpel',
   PRIMARY KEY  (id)
 ) TYPE=MyISAM COMMENT='Rezepttabelle';
 
 #
 # Daten für Tabelle `rezepte`
+#
+
+# --------------------------------------------------------
+
+#
+# Tabellenstruktur für Tabelle `rezepte_info`
+#
+
+CREATE TABLE rezepte_info (
+  id int(5) NOT NULL auto_increment,
+  rezepte_id int(3) NOT NULL default '0',
+  kunde_id int(4) NOT NULL default '0',
+  kurz_info varchar(75) default NULL,
+  info text,
+  datum timestamp(14) NOT NULL,
+  PRIMARY KEY  (id)
+) TYPE=MyISAM COMMENT='Bemerkungen der Kunden zu den Rezepten';
+
+#
+# Daten für Tabelle `rezepte_info`
 #
 
 # --------------------------------------------------------

@@ -2,25 +2,23 @@
 /*********** lokale Funktionsdatei Modul 'knoten_blatt' ****************/
 
 /**
-* Lesen eines Verzeichnisbaumes
+* lesen Verzeichnisbaum
+* neue Variante
 */
 function verzeichnis($kunde){
 	$i=0;
-	$pfad=opendir($kunde);
-	$eintrag=readdir($pfad);
-	while($eintrag){
-		$test=filetype($eintrag);
-		$test1=substr($eintrag,-4);
-		if($test=='dir' and $test1!='html' and $eintrag!='.' and $eintrag!='..'){
+	$pfad=opendir($kunde); // oeffnen Hauptverzeichnis 'kunde'
+	while($eintrag=readdir($pfad)){
+		if($eintrag!='.' and $eintrag!='..' and $eintrag!='CVS'){
 			$verzeichnis[$i]=$eintrag;
 			$i++;
 		}
-		$eintrag=readdir($pfad);
 	}
 	closedir($pfad);
 	clearstatcache();
 	return $verzeichnis;
 }
+
 
 /**
 * Abgleich Verzeichnisse mit Einstellung fuer Knoten Pulldown
